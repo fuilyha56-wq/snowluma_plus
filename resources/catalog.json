@@ -5993,7 +5993,7 @@
     {
       "action": "share_peer",
       "category": "ark",
-      "description": "分享用户/群Ark卡片（SnowLuma 主名，send_ark_share 是 NapCat 标准化别名）",
+      "description": "获取用户/群推荐Ark卡片内容",
       "params": {
         "user_id": "int",
         "group_id": "int"
@@ -6010,7 +6010,8 @@
       "required": [],
       "file": "plugins/onebot_expand/services/ark_service.py",
       "stream": false,
-      "risk": "write",
+      "risk": "read",
+      "compatibility": "SnowLuma extended.ts声明readOnly=true：仅获取推荐卡片内容；名称中的send不代表发送消息",
       "native_parameters": {
         "arguments": [
           "group_id",
@@ -6023,7 +6024,7 @@
     {
       "action": "send_ark_share",
       "category": "ark",
-      "description": "分享Ark卡片（NapCat 名，功能等价于 share_peer）",
+      "description": "获取用户/群推荐Ark卡片内容",
       "params": {
         "user_id": "int",
         "group_id": "int"
@@ -6040,7 +6041,8 @@
       "required": [],
       "file": "plugins/onebot_expand/services/ark_service.py",
       "stream": false,
-      "risk": "write",
+      "risk": "read",
+      "compatibility": "SnowLuma extended.ts声明readOnly=true：仅获取推荐卡片内容；名称中的send不代表发送消息",
       "native_parameters": {
         "arguments": [
           "group_id",
@@ -6053,7 +6055,7 @@
     {
       "action": "share_group_ex",
       "category": "ark",
-      "description": "分享群Ark卡片（SnowLuma 主名，send_group_ark_share 是 NapCat 标准化别名）",
+      "description": "获取群推荐Ark卡片内容",
       "params": {
         "group_id": "int"
       },
@@ -6070,7 +6072,8 @@
       ],
       "file": "plugins/onebot_expand/services/ark_service.py",
       "stream": false,
-      "risk": "write",
+      "risk": "read",
+      "compatibility": "SnowLuma extended.ts声明readOnly=true：仅获取推荐卡片内容；名称中的send不代表发送消息",
       "native_parameters": {
         "arguments": [],
         "required": []
@@ -6079,7 +6082,7 @@
     {
       "action": "send_group_ark_share",
       "category": "ark",
-      "description": "发送群Ark分享（NapCat 名，功能等价于 share_group_ex）",
+      "description": "获取群推荐Ark卡片内容",
       "params": {
         "group_id": "int"
       },
@@ -6096,7 +6099,8 @@
       ],
       "file": "plugins/onebot_expand/services/ark_service.py",
       "stream": false,
-      "risk": "write",
+      "risk": "read",
+      "compatibility": "SnowLuma extended.ts声明readOnly=true：仅获取推荐卡片内容；名称中的send不代表发送消息",
       "native_parameters": {
         "arguments": [],
         "required": []

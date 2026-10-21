@@ -1,0 +1,69 @@
+{
+  "group": "用户指定测试群",
+  "account": "既有Bot账号",
+  "transport": "existing_instance_debug_invoke",
+  "trigger": "isolated_test_driver_not_production_llm",
+  "results": [
+    {
+      "action": "get_login_info",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "dict",
+      "count": null
+    },
+    {
+      "action": "get_group_info",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "dict",
+      "count": null
+    },
+    {
+      "action": "get_group_member_info",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "dict",
+      "count": null
+    },
+    {
+      "action": "get_group_member_list",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "list",
+      "count": 174
+    },
+    {
+      "action": "_get_group_notice",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "list",
+      "count": 2
+    },
+    {
+      "action": "get_essence_msg_list",
+      "status": "ok",
+      "retcode": 0,
+      "shape": "list",
+      "count": 7
+    },
+    {
+      "action": "snowluma_send_text",
+      "success": true,
+      "framework_history": true,
+      "after_sent": true
+    },
+    {
+      "action": "snowluma_react_message",
+      "success": true
+    },
+    {
+      "action": "snowluma_recall_message",
+      "success": true
+    }
+  ],
+  "runtime_version": {
+    "app_name": "SnowLuma",
+    "app_version": "1.14.4-node",
+    "protocol_version": "v11"
+  }
+}

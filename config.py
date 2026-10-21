@@ -129,6 +129,28 @@ class SnowLumaConfig(BaseConfig):
     class AccessSection(SectionBase):
         """触发者授权与平台权限分开检查。"""
 
+        allow_basic_interactions: bool = Field(
+            label="允许当前会话普通互动",
+            default=True,
+            description="允许真实用户在当前获准会话请求贴表情、戳自己、给自己主页点赞1至10次、普通文字/原生表情、手动打卡及撤回Bot自己消息；群管理、审批、文件仍需单独授权",
+        )
+
+        blocked_users: list[str] = Field(
+            label="工具调用用户黑名单",
+            default_factory=list,
+            description="禁止这些QQ号调用本插件工具或动作；空为不额外禁止。仍遵守适配器名单。",
+        )
+        blocked_groups: list[str] = Field(
+            label="工具调用群黑名单",
+            default_factory=list,
+            description="禁止在这些群使用本插件工具或动作；普通获准会话默认可用。",
+        )
+        blocked_actions: list[str] = Field(
+            label="工具动作黑名单",
+            default_factory=list,
+            description="禁止的协议接口名称，别名与主名称等效；例如group_poke、send_like。优先于普通互动及显式授权。",
+        )
+
         operators: list[str] = Field(
             label="授权操作者QQ号",
             default_factory=list,
@@ -142,12 +164,12 @@ class SnowLumaConfig(BaseConfig):
         write_groups: list[str] = Field(
             label="允许执行写入动作的群",
             default_factory=list,
-            description="允许管理/公告/互动动作的群白名单",
+            description="允许执行独立授权管理/公告/文件等动作的群白名单；普通互动另有开关",
         )
         allowed_actions: list[str] = Field(
             label="允许执行的接口名称",
             default_factory=list,
-            description="允许执行的协议 action 精确白名单；默认不向 LLM 开放写入",
+            description="独立授权写入的协议 action 精确白名单；当前会话普通互动由单独开关控制",
         )
         approval_mode: str = Field(
             label="审批处理模式",

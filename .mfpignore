@@ -3,8 +3,11 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .test-run/
+.test-direct/
 .test-work/
 .git/
+tests/
+scripts/
 dist/
 logs/
 data/

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
@@ -70,7 +71,10 @@ async def test_actual_plugin_manager_load_service_tool_and_unload(
         import tempfile
 
         monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
-        root = root / "dist/snowluma_plus-0.1.0.mfp"
+        version = json.loads((root / "manifest.json").read_text(encoding="utf-8"))[
+            "version"
+        ]
+        root = root / f"dist/snowluma_plus-{version}.mfp"
         if not root.is_file():
             from ..scripts.build_package import build
 
@@ -86,7 +90,7 @@ async def test_actual_plugin_manager_load_service_tool_and_unload(
             module_file = Path(sys.modules[type(plugin.runtime).__module__].__file__)
             assert module_file.is_relative_to(tmp_path)
         assert (
-            len(registry.get_by_plugin("snowluma_plus")) == 16
+            len(registry.get_by_plugin("snowluma_plus")) == len(manifest.include) + 1
         )  # 15业务组件及1配置组件
         assert len(plugin.runtime.tasks) == 3
         tool_cls = registry.get("snowluma_plus:tool:snowluma_group")

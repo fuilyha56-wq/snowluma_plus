@@ -86,6 +86,14 @@ def route(entry: dict[str, Any]) -> str:
         return "snowluma_requests / snowluma_approve；通用入口拒绝flag"
     if not entry.get("backend_compatible", entry["expand_compatible"]):
         return "Expand明确标记不兼容；保留目录及原Service，不假称可用"
+    direct_routes = (
+        Path(__file__).resolve().parents[1] / "resources/business_routes.json"
+    )
+    if direct_routes.is_file():
+        rows = json.loads(direct_routes.read_text(encoding="utf-8"))
+        match = next((row for row in rows if row["action"] == entry["action"]), None)
+        if match:
+            return match["route"] + "；公共Service优先，正常消息经框架发送"
     if entry["action"] == "send_tuwen_ark":
         return "原Expand ark_service供可信插件；Plus拒绝原始旁路消息发送，普通分享使用snowluma_send"
     if entry["action"] in {

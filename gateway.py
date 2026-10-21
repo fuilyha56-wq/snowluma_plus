@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import inspect
 import json
+import re
 import time
 import uuid
 from collections import defaultdict, deque
@@ -75,6 +76,10 @@ class Gateway:
 
     def allowed_scope(self, scope: Scope, user: str = "") -> None:
         """每次执行都重新检查当前适配器名单。"""
+        if scope.group and scope.group in self.config.access.blocked_groups:
+            raise BusinessError("当前群在工具调用群黑名单中")
+        if (user or scope.user) in self.config.access.blocked_users:
+            raise BusinessError("当前用户在工具调用用户黑名单中")
         if scope.adapter not in self.config.plugin.adapters:
             raise BusinessError("适配器不在插件白名单")
         adapter = adapter_api.get_adapter(scope.adapter)
@@ -105,12 +110,17 @@ class Gateway:
         params: dict[str, Any],
         *,
         trusted: bool = False,
+        basic_interaction: bool = False,
     ) -> None:
         """检查执行者、范围、风险、参数；trusted 仅供插件绑定的后台任务。"""
         self.allowed_scope(scope, operator if not trusted else "")
         if not operator and not trusted:
             raise BusinessError("缺少框架绑定的真实触发者，不能由模型自行填写操作者")
         entry = self.catalog.get(action)
+        if self.canonical(action) in {
+            self.canonical(item) for item in self.config.access.blocked_actions
+        }:
+            raise BusinessError("此接口在工具动作黑名单中")
         if entry is None:
             raise BusinessError("接口不在已审计目录；先使用 snowluma_api_catalog 查询")
         if entry["risk"] in {"blocked", "stream_unavailable", "approval_only"}:
@@ -130,7 +140,42 @@ class Gateway:
             )
         if entry["risk"] != "read" and not write:
             raise BusinessError("此接口有副作用，请使用授权 Action")
-        if write:
+        basic = (
+            basic_interaction
+            and self.config.access.allow_basic_interactions
+            and action
+            in {
+                "set_msg_emoji_like",
+                "group_poke",
+                "friend_poke",
+                "send_poke",
+                "send_like",
+                "delete_msg",
+                "send_group_msg",
+                "send_private_msg",
+                "set_group_sign",
+            }
+        )
+        if (
+            basic
+            and action in {"group_poke", "friend_poke", "send_poke", "send_like"}
+            and str(params.get("user_id")) != operator
+        ):
+            raise BusinessError(
+                "普通互动只允许戳/点赞当前真实触发者；指定其他人需要独立动作授权"
+            )
+        if (
+            basic
+            and action == "send_like"
+            and (
+                type(params.get("times", 1)) is not int
+                or not 1 <= params.get("times", 1) <= 10
+            )
+        ):
+            raise BusinessError(
+                "普通互动的主页点赞次数必须为1至10；更大次数需独立动作授权"
+            )
+        if write and not basic:
             if self.canonical(action) not in {
                 self.canonical(a) for a in self.config.access.allowed_actions
             }:
@@ -386,6 +431,7 @@ class Gateway:
         write: bool = False,
         trusted: bool = False,
         operation_id: str = "",
+        basic_interaction: bool = False,
     ) -> dict[str, Any]:
         """统一调用及副作用结果审计；网络超时不会自动重新发出写入。"""
         action = self.canonical(action)
@@ -401,11 +447,21 @@ class Gateway:
             "forward_friend_single_msg",
             "upload_forward_msg",
             "send_tuwen_ark",
+            "send_group_ai_record",
+            "send_flash_msg",
         }:
             raise BusinessError(
                 "此消息操作必须通过 snowluma_send 及框架发送链路；原始Expand Service只供可信插件调用"
             )
-        self.authorize(scope, operator, action, write, params, trusted=trusted)
+        self.authorize(
+            scope,
+            operator,
+            action,
+            write,
+            params,
+            trusted=trusted,
+            basic_interaction=basic_interaction,
+        )
         needs_role = action.startswith("set_group_") or action in {
             "_send_group_notice",
             "_del_group_notice",
@@ -414,15 +470,14 @@ class Gateway:
             "set_essence_msg",
             "delete_essence_msg",
         }
-        if action == "delete_msg" and scope.group:
+        if action == "delete_msg" and (scope.group or basic_interaction):
             detail = response_data(
                 await self.raw_call(
                     scope, "get_msg", {"message_id": params["message_id"]}
                 )
             )
-            if (
-                not isinstance(detail, dict)
-                or str(detail.get("group_id")) != scope.group
+            if not isinstance(detail, dict) or (
+                scope.group and str(detail.get("group_id")) != scope.group
             ):
                 raise BusinessError("撤回消息的实时群归属无法确认")
             author = str(
@@ -430,6 +485,10 @@ class Gateway:
                 or detail.get("user_id")
                 or ""
             )
+            if basic_interaction and author != scope.account:
+                raise BusinessError(
+                    "普通互动仅可撤回Bot自己发送的消息；撤回成员消息需要独立管理授权"
+                )
             needs_role = author != scope.account
         own_card = (
             action == "set_group_card" and str(params.get("user_id")) == scope.account
@@ -500,9 +559,27 @@ class Gateway:
 
     def search(self, query: str, offset: int = 0, limit: int = 10) -> dict[str, Any]:
         """分页发现低频能力，只返回当前页，不更改其他插件工具。"""
-        found = [
-            a for a in self.catalog.values() if query.lower() in json_text(a).lower()
+        words = [
+            part for part in re.split(r"[\s,，/;；]+", query.lower().strip()) if part
         ]
+        synonyms = {
+            "reaction": "emoji_like",
+            "表情回应": "emoji_like",
+            "贴表情": "emoji_like",
+            "戳一戳": "poke",
+            "撤回": "delete_msg",
+        }
+        terms = set(words) | {synonyms[word] for word in words if word in synonyms}
+        ranked = [
+            (sum(term in json_text(entry).lower() for term in terms), entry)
+            for entry in self.catalog.values()
+        ]
+        found = [
+            entry
+            for score, entry in sorted(ranked, key=lambda pair: -pair[0])
+            if not terms or score
+        ]
+
         return {
             "total": len(found),
             "offset": offset,

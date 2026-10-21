@@ -655,7 +655,7 @@ class CatalogQuery(BaseTool):
     """按需 API 发现与接口参数说明。"""
 
     name = "snowluma_api_catalog"
-    description = "分页检索低频SnowLuma能力：空间、群相册、群待办、账号、在线状态、AI语音、OCR、闪传、收藏、Ark等；显示参数/权限/协议限制。"
+    description = "仅用于没有专用工具的低频能力；贴表情/戳人/撤回/发消息/成员/公告等请直接调用对应业务工具，无需查目录。分页检索低频SnowLuma能力：空间、群相册、群待办、账号、在线状态、AI语音、OCR、闪传、收藏、Ark等；显示参数/权限/协议限制。"
 
     async def execute(
         self, query: str = "", offset: int = 0, limit: int = 8
@@ -912,7 +912,7 @@ class ManageAction(BoundAction):
     name = "snowluma_manage"
     associated_types = ["text"]
     associated_platforms = ["qq"]
-    description = "执行已授权管理/公告/文件/低频写入；先查目录参数。目标成员可用QQ或准确昵称，必须有真实用户触发、群和action白名单及即时平台权限。"
+    description = "兼容低频已授权写入。贴表情/戳一戳/撤回/打卡/点赞/管理均已有直接业务动作，应直接调用对应动作；不要用此入口查询目录或反复试探权限。"
 
     async def execute(
         self, action: str, params_json: str = "{}", target: str = ""
@@ -947,7 +947,9 @@ class ManageAction(BoundAction):
                 params["user_id"] = await runtime.business.resolve_member(
                     scope, target, operator
                 )
-            if "message_id" in params:
+            if "message_id" in params and params["message_id"] != getattr(
+                self, "_validated_message_id", None
+            ):
                 params["message_id"] = await platform_message(
                     runtime, scope, str(params["message_id"])
                 )
@@ -968,6 +970,7 @@ class ManageAction(BoundAction):
                 params,
                 write=True,
                 operation_id=operation_id,
+                basic_interaction=getattr(self, "_basic_interaction", False),
             )
             if canonical in {"_send_group_notice", "_del_group_notice"}:
                 # 成功动作后读取实际快照；失败只影响同步，不把失败说成发布失败。
@@ -1062,7 +1065,9 @@ class CheckinAction(BoundAction):
         """返回已确认成功、失败或结果不确定的真实状态。"""
         try:
             runtime, scope, operator, _ = await context(self)
-            result = await runtime.business.checkin(scope, operator)
+            result = await runtime.business.checkin(
+                scope, operator, basic_interaction=True
+            )
             return result.get("state") == "success", json_text(result)
         except BusinessError as exc:
             return False, str(exc)
@@ -1111,6 +1116,7 @@ class SendAction(BoundAction):
                     "messages" if kind == "forward" else "message": [],
                 },
                 trusted=False,
+                basic_interaction=kind in {"text", "face", "reply"},
             )
             operation_id = f"send:{uuid.uuid4().hex}"
             await runtime.ledger.claim(
@@ -1191,7 +1197,7 @@ class SendAction(BoundAction):
                     "kind 仅支持 text/face/reply/forward/file/image/emoji/voice/video/share"
                 )
             recorded = await runtime.ledger.rows(
-                "SELECT state FROM operations WHERE id=?", (operation_id,)
+                "SELECT state,result FROM operations WHERE id=?", (operation_id,)
             )
             success = success and bool(recorded and recorded[0]["state"] == "success")
             if not success:
@@ -1200,7 +1206,14 @@ class SendAction(BoundAction):
                     "uncertain",
                     "框架没有 AFTER_MESSAGE_SENT 成功事实，可能被拦截或发送失败，请先核实",
                 )
+            platform_id = ""
+            if success:
+                result_data = json.loads(recorded[0]["result"])
+                if isinstance(result_data, dict):
+                    platform_id = str(result_data.get("platform_message_id") or "")
             return success, (
+                "platform_message_id=" + platform_id + "；" if platform_id else ""
+            ) + (
                 "框架发送已确认成功" if success else "框架未确认成功，先核实平台和历史"
             ) + f"；operation_id={operation_id}"
         except (BusinessError, ValueError, OSError) as exc:

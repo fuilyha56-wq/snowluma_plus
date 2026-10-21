@@ -6,6 +6,8 @@ from src.app.plugin_system.base import BasePlugin, register_plugin
 
 from .components import COMPONENTS
 from .config import SnowLumaConfig
+from .direct import DIRECT_COMPONENTS
+from .generated import GENERATED_COMPONENTS
 from .handlers import SnowLumaEvents
 from .runtime import Runtime
 
@@ -21,7 +23,11 @@ class SnowLumaPlus(BasePlugin):
         """组件注册严格跟随插件开关，manifest 是对应静态清单。"""
         if self.config.plugin.enabled:
             self.config.validate_runtime()
-        return [SnowLumaEvents, *COMPONENTS] if self.config.plugin.enabled else []
+        return (
+            [SnowLumaEvents, *DIRECT_COMPONENTS, *GENERATED_COMPONENTS, *COMPONENTS]
+            if self.config.plugin.enabled
+            else []
+        )
 
     async def on_plugin_loaded(self) -> None:
         """先验证配置再开启任务；异常时关闭已获取的资源。"""

@@ -318,6 +318,10 @@ class Business:
             if row["kind"] == "group"
             else "set_friend_add_request"
         )
+        if self.gateway.canonical(action) in {
+            self.gateway.canonical(item) for item in self.config.access.blocked_actions
+        }:
+            raise BusinessError("此审批接口在工具动作黑名单中")
         if action not in self.config.access.allowed_actions:
             raise BusinessError("审批 action 未被明确授权")
         if row["kind"] == "group":
@@ -405,11 +409,17 @@ class Business:
         operator: str,
         *,
         scheduled: bool = False,
+        basic_interaction: bool = False,
         now: datetime | None = None,
     ) -> dict[str, Any]:
         """日期、账号、群共用操作键；明确失败可有限重试，uncertain 不重试。"""
         config = self.config.checkin
-        if not scope.group or scope.group not in config.groups:
+        basic = (
+            basic_interaction
+            and not scheduled
+            and self.config.access.allow_basic_interactions
+        )
+        if not scope.group or (not basic and scope.group not in config.groups):
             raise BusinessError("群未在 checkin.groups 白名单")
         self.gateway.authorize(
             scope,
@@ -418,6 +428,7 @@ class Business:
             True,
             {"group_id": scope.group},
             trusted=scheduled,
+            basic_interaction=basic,
         )
         day = (
             (now or datetime.now(ZoneInfo(config.timezone)))

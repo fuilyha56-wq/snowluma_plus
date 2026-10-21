@@ -196,6 +196,41 @@ class AdapterBinding:
         async def send(envelope: dict[str, Any]) -> Any:
             info = envelope.get("message_info") or {}
             extra = info.get("extra") or {}
+            special = extra.get("snowluma_native_send")
+            if self.active and isinstance(special, dict):
+                try:
+                    action, payload = special.get("action"), special.get("params")
+                    target = identifier((info.get("group_info") or {}).get("group_id"))
+                    if (
+                        action != "send_group_ai_record"
+                        or not isinstance(payload, dict)
+                        or not target
+                        or str(payload.get("group_id")) != target
+                        or set(payload) != {"group_id", "character", "text"}
+                    ):
+                        raise ValueError("原生发送动作或目标未通过校验")
+                    response = await adapter_api.send_adapter_command(
+                        self.signature, action, payload
+                    )
+                    from .gateway import response_data
+
+                    data = response_data(response)
+                    mid = (
+                        identifier(data.get("message_id"))
+                        if isinstance(data, dict)
+                        else ""
+                    )
+                    if not mid or mid == "0":
+                        raise ValueError(
+                            "平台未返回可确认的消息ID；结果不确定，请勿自动重发"
+                        )
+                    return PlatformSendResult(
+                        success=True, message_id=mid, response=response
+                    )
+                except Exception as exc:
+                    return PlatformSendResult(
+                        success=False, error=type(exc).__name__ + ": " + str(exc)[:200]
+                    )
             segments = envelope.get("message_segment") or []
             if isinstance(segments, dict):
                 segments = (

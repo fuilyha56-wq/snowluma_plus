@@ -36,7 +36,7 @@ def test_all_webui_sections_and_fields_have_chinese_labels(monkeypatch):
             )
     sections = module.ConfigParser.extract_schema(SnowLumaConfig)
     assert len(sections) == 7
-    assert sum(len(section.fields) for section in sections) == 48
+    assert sum(len(section.fields) for section in sections) == 52
     for section in sections:
         assert re.search(r"[\u4e00-\u9fff]", section.title), section.name
         for field in section.fields:

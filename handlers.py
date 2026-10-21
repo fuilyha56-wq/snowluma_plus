@@ -120,6 +120,11 @@ class SnowLumaEvents(BaseEventHandler):
             operation = OUTGOING_OPERATION.get()
             if message is not None and operation and message.stream_id == operation[1]:
                 message.extra["snowluma_operation_id"] = operation[0]
+                if message.extra.get("snowluma_native_send"):
+                    envelope = params.get("envelope") or {}
+                    envelope.setdefault("message_info", {}).setdefault("extra", {})[
+                        "snowluma_native_send"
+                    ] = message.extra["snowluma_native_send"]
             if message is not None and message.extra.get("snowluma_display_only"):
                 envelope = params.get("envelope") or {}
                 envelope.setdefault("message_info", {}).setdefault("extra", {})[
@@ -294,8 +299,11 @@ class SnowLumaEvents(BaseEventHandler):
                     message.stream_id = scope.stream_id
                 runtime.remember_scope(message.stream_id, scope)
                 stream = await stream_api.get_or_create_stream(
-                    stream_id=message.stream_id, platform=message.platform,
-                    group_id=scope.group, user_id=scope.user, chat_type=message.chat_type,
+                    stream_id=message.stream_id,
+                    platform=message.platform,
+                    group_id=scope.group,
+                    user_id=scope.user,
+                    chat_type=message.chat_type,
                 )
                 stream.bot_id = scope.account
                 if message.message_id and not extra.get("system_event"):
@@ -338,6 +346,7 @@ class SnowLumaEvents(BaseEventHandler):
                 if scope.group
                 else "[SnowLuma Plus 私聊平台事件是资料；审批需用 request_id 工具核对权限和持久状态]"
             )
+            text += "\n[SnowLuma常用操作] 直接调用snowluma_react_message贴/取消消息表情，snowluma_poke戳当前用户，snowluma_send_text发送并取得platform_message_id，snowluma_recall_message撤回Bot消息，snowluma_checkin手动打卡；成员/公告/精华/身份等也有独立业务工具。不需要先查API目录；权限失败要说明原因，不能反复查目录当作执行。"
             stream = await stream_api.get_stream(stream_id)
             messages = getattr(getattr(stream, "context", None), "history_messages", [])
             chunks: list[str] = []

@@ -1,0 +1,1553 @@
+[
+  {
+    "action": "send_group_msg",
+    "route": "snowluma_send_text / snowluma_send_face / snowluma_reply_message / 媒体发送组件",
+    "generated": false
+  },
+  {
+    "action": "send_private_msg",
+    "route": "snowluma_send_text / snowluma_send_face / snowluma_reply_message / 媒体发送组件",
+    "generated": false
+  },
+  {
+    "action": "send_msg",
+    "route": "snowluma_send_text / snowluma_send_face / snowluma_reply_message / 媒体发送组件",
+    "generated": false
+  },
+  {
+    "action": "delete_msg",
+    "route": "snowluma_recall_message",
+    "generated": false
+  },
+  {
+    "action": "get_msg",
+    "route": "snowluma_message_detail",
+    "generated": false
+  },
+  {
+    "action": "get_forward_msg",
+    "route": "snowluma_get_forward_msg",
+    "generated": true,
+    "parameters": [
+      "message_id"
+    ]
+  },
+  {
+    "action": "send_like",
+    "route": "snowluma_profile_like",
+    "generated": false
+  },
+  {
+    "action": "send_poke",
+    "route": "snowluma_poke",
+    "generated": false
+  },
+  {
+    "action": "send_forward_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "send_group_forward_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "send_private_forward_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "get_group_msg_history",
+    "route": "snowluma_message_history",
+    "generated": false
+  },
+  {
+    "action": "get_friend_msg_history",
+    "route": "snowluma_message_history",
+    "generated": false
+  },
+  {
+    "action": "forward_friend_single_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "forward_group_single_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "mark_msg_as_read",
+    "route": "snowluma_mark_msg_as_read",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "target_id"
+    ]
+  },
+  {
+    "action": "mark_group_msg_as_read",
+    "route": "snowluma_mark_group_msg_as_read",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "mark_private_msg_as_read",
+    "route": "snowluma_mark_private_msg_as_read",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "user_id"
+    ]
+  },
+  {
+    "action": "_mark_all_as_read",
+    "route": "snowluma_mark_all_as_read",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "upload_forward_msg",
+    "route": "snowluma_forward_messages（框架正常发送）",
+    "generated": false
+  },
+  {
+    "action": "set_group_kick",
+    "route": "snowluma_kick_member",
+    "generated": false
+  },
+  {
+    "action": "set_group_ban",
+    "route": "snowluma_mute_member / snowluma_unmute_member",
+    "generated": false
+  },
+  {
+    "action": "set_group_anonymous_ban",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_group_whole_ban",
+    "route": "snowluma_whole_group_mute",
+    "generated": false
+  },
+  {
+    "action": "set_group_admin",
+    "route": "snowluma_set_group_admin",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "group_id",
+      "enable"
+    ]
+  },
+  {
+    "action": "set_group_anonymous",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_group_card",
+    "route": "snowluma_set_member_card",
+    "generated": false
+  },
+  {
+    "action": "set_group_name",
+    "route": "snowluma_rename_group",
+    "generated": false
+  },
+  {
+    "action": "set_group_leave",
+    "route": "snowluma_set_group_leave",
+    "generated": true,
+    "parameters": [
+      "group_id",
+      "is_dismiss"
+    ]
+  },
+  {
+    "action": "set_group_special_title",
+    "route": "snowluma_set_member_title",
+    "generated": false
+  },
+  {
+    "action": "set_group_member_invite_policy",
+    "route": "snowluma_set_group_member_invite_policy",
+    "generated": true,
+    "parameters": [
+      "policy",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_member_permissions",
+    "route": "snowluma_set_group_member_permissions",
+    "generated": true,
+    "parameters": [
+      "group_id",
+      "allow_member_upload_album",
+      "allow_member_temporary_session",
+      "allow_member_create_group"
+    ]
+  },
+  {
+    "action": "set_group_new_member_history_visibility",
+    "route": "snowluma_set_group_new_member_history_visibility",
+    "generated": true,
+    "parameters": [
+      "visible",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_admin_settings",
+    "route": "snowluma_get_group_admin_settings",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "upload_group_file",
+    "route": "snowluma_upload_group_file",
+    "generated": true,
+    "parameters": [
+      "file_path",
+      "name",
+      "group_id"
+    ]
+  },
+  {
+    "action": "upload_private_file",
+    "route": "snowluma_upload_private_file",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "file_path",
+      "name"
+    ]
+  },
+  {
+    "action": "get_file",
+    "route": "snowluma_get_file",
+    "generated": true,
+    "parameters": [
+      "file_id"
+    ]
+  },
+  {
+    "action": "get_image",
+    "route": "snowluma_get_image",
+    "generated": true,
+    "parameters": [
+      "file"
+    ]
+  },
+  {
+    "action": "get_record",
+    "route": "snowluma_get_record",
+    "generated": true,
+    "parameters": [
+      "file",
+      "out_format"
+    ]
+  },
+  {
+    "action": "send_online_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "send_online_folder",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_online_file_msg",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "receive_online_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "refuse_online_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "cancel_online_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "clean_stream_temp_file",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "upload_file_stream",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "download_file_stream",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "download_file_record_stream",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "download_file_image_stream",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "get_login_info",
+    "route": "snowluma_get_login_info",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_stranger_info",
+    "route": "snowluma_get_stranger_info",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "no_cache"
+    ]
+  },
+  {
+    "action": "get_friend_list",
+    "route": "snowluma_get_friend_list",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_group_list",
+    "route": "snowluma_get_group_list",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_group_member_list",
+    "route": "snowluma_find_member",
+    "generated": false
+  },
+  {
+    "action": "get_group_member_info",
+    "route": "snowluma_find_member / snowluma_bot_identity",
+    "generated": false
+  },
+  {
+    "action": "get_group_info",
+    "route": "snowluma_group_info",
+    "generated": false
+  },
+  {
+    "action": "get_group_detail_info",
+    "route": "snowluma_get_group_detail_info",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_honor_info",
+    "route": "snowluma_group_honor",
+    "generated": false
+  },
+  {
+    "action": "get_robot_uin_range",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_msg_emoji_like",
+    "route": "snowluma_react_message",
+    "generated": false
+  },
+  {
+    "action": "get_essence_msg_list",
+    "route": "snowluma_list_essence",
+    "generated": false
+  },
+  {
+    "action": "get_online_clients",
+    "route": "snowluma_get_online_clients",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_cookies",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "get_csrf_token",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "get_status",
+    "route": "snowluma_get_status",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "set_restart",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "clean_cache",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "can_send_image",
+    "route": "snowluma_can_send_image",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "can_send_record",
+    "route": "snowluma_can_send_record",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_version_info",
+    "route": "snowluma_get_version_info",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "set_essence_msg",
+    "route": "snowluma_set_essence",
+    "generated": false
+  },
+  {
+    "action": "delete_essence_msg",
+    "route": "snowluma_remove_essence",
+    "generated": false
+  },
+  {
+    "action": "get_group_at_all_remain",
+    "route": "snowluma_get_group_at_all_remain",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "fetch_ptt_text",
+    "route": "snowluma_fetch_ptt_text",
+    "generated": true,
+    "parameters": [
+      "message_id"
+    ]
+  },
+  {
+    "action": "get_group_file_url",
+    "route": "snowluma_file_url",
+    "generated": false
+  },
+  {
+    "action": "get_group_root_files",
+    "route": "snowluma_list_files",
+    "generated": false
+  },
+  {
+    "action": "get_group_files_by_folder",
+    "route": "snowluma_list_files",
+    "generated": false
+  },
+  {
+    "action": "delete_group_file",
+    "route": "snowluma_delete_group_file",
+    "generated": true,
+    "parameters": [
+      "file_id",
+      "busid",
+      "group_id"
+    ]
+  },
+  {
+    "action": "create_group_file_folder",
+    "route": "snowluma_create_group_file_folder",
+    "generated": true,
+    "parameters": [
+      "name",
+      "group_id",
+      "parent_id"
+    ]
+  },
+  {
+    "action": "delete_group_folder",
+    "route": "snowluma_delete_group_folder",
+    "generated": true,
+    "parameters": [
+      "folder_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_file_system_info",
+    "route": "snowluma_get_group_file_system_info",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "move_group_file",
+    "route": "snowluma_move_group_file",
+    "generated": true,
+    "parameters": [
+      "file_id",
+      "parent_directory",
+      "target_directory",
+      "group_id"
+    ]
+  },
+  {
+    "action": "rename_group_file",
+    "route": "snowluma_rename_group_file",
+    "generated": true,
+    "parameters": [
+      "file_id",
+      "current_parent_directory",
+      "new_name",
+      "group_id"
+    ]
+  },
+  {
+    "action": "rename_group_file_folder",
+    "route": "snowluma_rename_group_file_folder",
+    "generated": true,
+    "parameters": [
+      "folder_id",
+      "new_folder_name",
+      "group_id"
+    ]
+  },
+  {
+    "action": "trans_group_file",
+    "route": "snowluma_trans_group_file",
+    "generated": true,
+    "parameters": [
+      "file_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_private_file_url",
+    "route": "snowluma_file_url",
+    "generated": false
+  },
+  {
+    "action": "_send_group_notice",
+    "route": "snowluma_publish_notice",
+    "generated": false
+  },
+  {
+    "action": "_get_group_notice",
+    "route": "snowluma_list_notices",
+    "generated": false
+  },
+  {
+    "action": "_del_group_notice",
+    "route": "snowluma_delete_notice",
+    "generated": false
+  },
+  {
+    "action": "set_group_portrait",
+    "route": "snowluma_set_group_portrait",
+    "generated": true,
+    "parameters": [
+      "file",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_remark",
+    "route": "snowluma_set_group_remark",
+    "generated": true,
+    "parameters": [
+      "remark",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_add_option",
+    "route": "snowluma_set_group_add_option",
+    "generated": true,
+    "parameters": [
+      "add_type",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_search",
+    "route": "snowluma_set_group_search",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_robot_add_option",
+    "route": "snowluma_set_group_robot_add_option",
+    "generated": true,
+    "parameters": [
+      "group_id",
+      "robot_member_switch"
+    ]
+  },
+  {
+    "action": "set_group_kick_members",
+    "route": "snowluma_set_group_kick_members",
+    "generated": true,
+    "parameters": [
+      "user_id_list",
+      "group_id",
+      "reject_add_request"
+    ]
+  },
+  {
+    "action": "get_group_shut_list",
+    "route": "snowluma_get_group_shut_list",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_ignored_notifies",
+    "route": "snowluma_get_group_ignored_notifies",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_group_ignore_add_request",
+    "route": "snowluma_get_group_ignore_add_request",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_group_info_ex",
+    "route": "snowluma_get_group_info_ex",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_share_link",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_group_sign",
+    "route": "snowluma_checkin",
+    "generated": false
+  },
+  {
+    "action": "get_group_signed_list",
+    "route": "snowluma_get_group_signed_list",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_friend_add_request",
+    "route": "approval_only",
+    "generated": false
+  },
+  {
+    "action": "set_group_add_request",
+    "route": "approval_only",
+    "generated": false
+  },
+  {
+    "action": "get_group_system_msg",
+    "route": "snowluma_get_group_system_msg",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_doubt_friends_add_request",
+    "route": "snowluma_get_doubt_friends_add_request",
+    "generated": true,
+    "parameters": [
+      "count"
+    ]
+  },
+  {
+    "action": "set_doubt_friends_add_request",
+    "route": "snowluma_set_doubt_friends_add_request",
+    "generated": true,
+    "parameters": [
+      "flag",
+      "approve"
+    ]
+  },
+  {
+    "action": "delete_friend",
+    "route": "snowluma_delete_friend",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "block"
+    ]
+  },
+  {
+    "action": "set_friend_remark",
+    "route": "snowluma_set_friend_remark",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "remark"
+    ]
+  },
+  {
+    "action": "get_friends_with_category",
+    "route": "snowluma_get_friends_with_category",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_unidirectional_friend_list",
+    "route": "snowluma_get_unidirectional_friend_list",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "set_qq_profile",
+    "route": "snowluma_set_qq_profile",
+    "generated": true,
+    "parameters": [
+      "nickname",
+      "personal_note"
+    ]
+  },
+  {
+    "action": "set_qq_avatar",
+    "route": "snowluma_set_qq_avatar",
+    "generated": true,
+    "parameters": [
+      "file"
+    ]
+  },
+  {
+    "action": "set_self_longnick",
+    "route": "snowluma_set_self_longnick",
+    "generated": true,
+    "parameters": [
+      "long_nick"
+    ]
+  },
+  {
+    "action": "get_recent_contact",
+    "route": "snowluma_get_recent_contact",
+    "generated": true,
+    "parameters": [
+      "count"
+    ]
+  },
+  {
+    "action": "get_profile_like",
+    "route": "snowluma_get_profile_like",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "start",
+      "count"
+    ]
+  },
+  {
+    "action": "set_friends_category",
+    "route": "snowluma_set_friends_category",
+    "generated": true,
+    "parameters": [
+      "uin",
+      "category_id",
+      "category_name"
+    ]
+  },
+  {
+    "action": "set_online_status",
+    "route": "snowluma_set_online_status",
+    "generated": true,
+    "parameters": [
+      "status",
+      "ext_status",
+      "battery_status"
+    ]
+  },
+  {
+    "action": "set_diy_online_status",
+    "route": "snowluma_set_diy_online_status",
+    "generated": true,
+    "parameters": [
+      "face_id",
+      "face_type",
+      "wording"
+    ]
+  },
+  {
+    "action": "set_input_status",
+    "route": "snowluma_set_input_status",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "event_type"
+    ]
+  },
+  {
+    "action": "nc_get_user_status",
+    "route": "snowluma_nc_get_user_status",
+    "generated": true,
+    "parameters": [
+      "user_id"
+    ]
+  },
+  {
+    "action": "friend_poke",
+    "route": "snowluma_poke",
+    "generated": false
+  },
+  {
+    "action": "group_poke",
+    "route": "snowluma_poke",
+    "generated": false
+  },
+  {
+    "action": "fetch_custom_face",
+    "route": "snowluma_fetch_custom_face",
+    "generated": true,
+    "parameters": [
+      "count"
+    ]
+  },
+  {
+    "action": "add_custom_face",
+    "route": "snowluma_add_custom_face",
+    "generated": true,
+    "parameters": [
+      "file"
+    ]
+  },
+  {
+    "action": "delete_custom_face",
+    "route": "snowluma_delete_custom_face",
+    "generated": true,
+    "parameters": [
+      "emoji_id"
+    ]
+  },
+  {
+    "action": "fetch_custom_face_detail",
+    "route": "snowluma_emoji(kind=custom)",
+    "generated": false
+  },
+  {
+    "action": "set_custom_face_desc",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "modify_custom_face",
+    "route": "snowluma_modify_custom_face",
+    "generated": true,
+    "parameters": [
+      "emoji_id",
+      "desc"
+    ]
+  },
+  {
+    "action": "move_custom_face_to_front",
+    "route": "snowluma_move_custom_face_to_front",
+    "generated": true,
+    "parameters": [
+      "emoji_id"
+    ]
+  },
+  {
+    "action": "fetch_emoji_like",
+    "route": "snowluma_reaction_users",
+    "generated": false
+  },
+  {
+    "action": "get_emoji_likes",
+    "route": "snowluma_get_emoji_likes",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "emoji_id"
+    ]
+  },
+  {
+    "action": "get_msg_emoji_likes",
+    "route": "snowluma_message_reactions",
+    "generated": false
+  },
+  {
+    "action": "set_group_reaction",
+    "route": "snowluma_set_group_reaction",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "code",
+      "group_id",
+      "is_set"
+    ]
+  },
+  {
+    "action": "fetch_sys_faces",
+    "route": "snowluma_find_face",
+    "generated": false
+  },
+  {
+    "action": "fetch_face_entity",
+    "route": "snowluma_fetch_face_entity",
+    "generated": true,
+    "parameters": [
+      "face_id",
+      "refresh"
+    ]
+  },
+  {
+    "action": "search_sys_faces",
+    "route": "snowluma_find_face",
+    "generated": false
+  },
+  {
+    "action": "fetch_super_face_id",
+    "route": "snowluma_emoji(kind=super)",
+    "generated": false
+  },
+  {
+    "action": "get_ai_characters",
+    "route": "snowluma_get_ai_characters",
+    "generated": true,
+    "parameters": [
+      "group_id",
+      "chat_type"
+    ]
+  },
+  {
+    "action": "get_ai_record",
+    "route": "snowluma_get_ai_record",
+    "generated": true,
+    "parameters": [
+      "character",
+      "text",
+      "group_id"
+    ]
+  },
+  {
+    "action": "send_group_ai_record",
+    "route": "snowluma_send_group_ai_record",
+    "generated": true,
+    "parameters": [
+      "character",
+      "text",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_clientkey",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "get_credentials",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "get_rkey",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "get_rkey_server",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "check_url_safely",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "ocr_image",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "download_file",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "request_decrypt_key",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "_get_model_show",
+    "route": "snowluma_get_model_show",
+    "generated": true,
+    "parameters": [
+      "model"
+    ]
+  },
+  {
+    "action": "_set_model_show",
+    "route": "snowluma_set_model_show",
+    "generated": true,
+    "parameters": [
+      "model",
+      "show"
+    ]
+  },
+  {
+    "action": "bot_exit",
+    "route": "snowluma_bot_exit",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "nc_get_packet_status",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "click_inline_keyboard_button",
+    "route": "snowluma_click_inline_keyboard_button",
+    "generated": true,
+    "parameters": [
+      "bot_appid",
+      "msg_seq",
+      "button_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_mini_app_ark",
+    "route": "snowluma_get_mini_app_ark",
+    "generated": true,
+    "parameters": [
+      "type",
+      "title",
+      "desc",
+      "pic_url",
+      "jump_url"
+    ]
+  },
+  {
+    "action": "translate_en2zh",
+    "route": "snowluma_translate_en2zh",
+    "generated": true,
+    "parameters": [
+      "words"
+    ]
+  },
+  {
+    "action": "create_collection",
+    "route": "snowluma_create_collection",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "get_collection_list",
+    "route": "snowluma_get_collection_list",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "send_packet",
+    "route": "blocked",
+    "generated": false
+  },
+  {
+    "action": "send_pb",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "handle_quick_operation",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_word_slices",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "create_flash_task",
+    "route": "snowluma_create_flash_task",
+    "generated": true,
+    "parameters": [
+      "files",
+      "name"
+    ]
+  },
+  {
+    "action": "send_flash_msg",
+    "route": "可信Expand Service；SnowLuma只返回占位message_id=0，无法确认正常消息发送与撤回",
+    "generated": false
+  },
+  {
+    "action": "get_flash_file_list",
+    "route": "snowluma_get_flash_file_list",
+    "generated": true,
+    "parameters": [
+      "fileset_id"
+    ]
+  },
+  {
+    "action": "get_flash_file_url",
+    "route": "snowluma_get_flash_file_url",
+    "generated": true,
+    "parameters": [
+      "fileset_id",
+      "file_name"
+    ]
+  },
+  {
+    "action": "get_share_link",
+    "route": "snowluma_get_share_link",
+    "generated": true,
+    "parameters": [
+      "fileset_id"
+    ]
+  },
+  {
+    "action": "download_fileset",
+    "route": "snowluma_download_fileset",
+    "generated": true,
+    "parameters": [
+      "fileset_id"
+    ]
+  },
+  {
+    "action": "get_fileset_info",
+    "route": "snowluma_get_fileset_info",
+    "generated": true,
+    "parameters": [
+      "fileset_id"
+    ]
+  },
+  {
+    "action": "get_fileset_id",
+    "route": "snowluma_get_fileset_id",
+    "generated": true,
+    "parameters": [
+      "share_code"
+    ]
+  },
+  {
+    "action": "list_filesets",
+    "route": "snowluma_list_filesets",
+    "generated": true,
+    "parameters": []
+  },
+  {
+    "action": "delete_flash_file",
+    "route": "snowluma_delete_flash_file",
+    "generated": true,
+    "parameters": [
+      "fileset_id"
+    ]
+  },
+  {
+    "action": "rename_flash_file",
+    "route": "snowluma_rename_flash_file",
+    "generated": true,
+    "parameters": [
+      "fileset_id",
+      "new_name"
+    ]
+  },
+  {
+    "action": "get_qun_album_list",
+    "route": "snowluma_get_qun_album_list",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "upload_image_to_qun_album",
+    "route": "snowluma_upload_image_to_qun_album",
+    "generated": true,
+    "parameters": [
+      "file",
+      "album_id",
+      "album_name",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_album_media_list",
+    "route": "snowluma_get_group_album_media_list",
+    "generated": true,
+    "parameters": [
+      "album_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "do_group_album_comment",
+    "route": "snowluma_do_group_album_comment",
+    "generated": true,
+    "parameters": [
+      "album_id",
+      "lloc",
+      "content",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_album_media_like",
+    "route": "snowluma_set_group_album_media_like",
+    "generated": true,
+    "parameters": [
+      "album_id",
+      "batch_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "cancel_group_album_media_like",
+    "route": "snowluma_cancel_group_album_media_like",
+    "generated": true,
+    "parameters": [
+      "album_id",
+      "batch_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "del_group_album_media",
+    "route": "snowluma_del_group_album_media",
+    "generated": true,
+    "parameters": [
+      "album_id",
+      "lloc",
+      "group_id"
+    ]
+  },
+  {
+    "action": "set_group_todo",
+    "route": "snowluma_set_group_todo",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "complete_group_todo",
+    "route": "snowluma_complete_group_todo",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "cancel_group_todo",
+    "route": "snowluma_cancel_group_todo",
+    "generated": true,
+    "parameters": [
+      "message_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_group_todo_list",
+    "route": "snowluma_get_group_todo_list",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "get_qzone_msg_list",
+    "route": "snowluma_get_qzone_msg_list",
+    "generated": true,
+    "parameters": [
+      "pos",
+      "num"
+    ]
+  },
+  {
+    "action": "get_qzone_feeds",
+    "route": "snowluma_get_qzone_feeds",
+    "generated": true,
+    "parameters": [
+      "page_num",
+      "count"
+    ]
+  },
+  {
+    "action": "send_qzone_msg",
+    "route": "snowluma_send_qzone_msg",
+    "generated": true,
+    "parameters": [
+      "content",
+      "images",
+      "ugc_right",
+      "target_uins"
+    ]
+  },
+  {
+    "action": "delete_qzone_msg",
+    "route": "snowluma_delete_qzone_msg",
+    "generated": true,
+    "parameters": [
+      "tid"
+    ]
+  },
+  {
+    "action": "like_qzone",
+    "route": "snowluma_like_qzone",
+    "generated": true,
+    "parameters": [
+      "tid",
+      "target_uin"
+    ]
+  },
+  {
+    "action": "unlike_qzone",
+    "route": "snowluma_unlike_qzone",
+    "generated": true,
+    "parameters": [
+      "tid",
+      "target_uin"
+    ]
+  },
+  {
+    "action": "comment_qzone",
+    "route": "snowluma_comment_qzone",
+    "generated": true,
+    "parameters": [
+      "tid",
+      "content",
+      "target_uin",
+      "images"
+    ]
+  },
+  {
+    "action": "set_qzone_ban",
+    "route": "snowluma_set_qzone_ban",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "enable"
+    ]
+  },
+  {
+    "action": "set_qzone_msg_right",
+    "route": "snowluma_set_qzone_msg_right",
+    "generated": true,
+    "parameters": [
+      "tid",
+      "ugc_right",
+      "target_uins"
+    ]
+  },
+  {
+    "action": "share_peer",
+    "route": "snowluma_share_peer",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "send_ark_share",
+    "route": "snowluma_send_ark_share",
+    "generated": true,
+    "parameters": [
+      "user_id",
+      "group_id"
+    ]
+  },
+  {
+    "action": "share_group_ex",
+    "route": "snowluma_share_group_ex",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "send_group_ark_share",
+    "route": "snowluma_send_group_ark_share",
+    "generated": true,
+    "parameters": [
+      "group_id"
+    ]
+  },
+  {
+    "action": "send_tuwen_ark",
+    "route": "可信Expand Service；模型不旁路框架发送图文转发",
+    "generated": false
+  },
+  {
+    "action": "batch_delete_group_member",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_group_msg_mask",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "create_group_album",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "delete_group_album",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_flash_file_download_urls",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "upload_flash_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "reshare_flash_file",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_group_file_forever",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_profile_like_me",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_profile_like_count",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_qq_avatar",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_friend_category",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "_get_friend_dress",
+    "route": "snowluma_get_friend_dress",
+    "generated": true,
+    "parameters": [
+      "user_id"
+    ]
+  },
+  {
+    "action": "get_recommend_face",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "unset_msg_emoji_like",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_config",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "set_config",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_event",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "llonebot_debug",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "scan_qrcode",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_guild_list",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "test_download_stream",
+    "route": "stream_unavailable",
+    "generated": false
+  },
+  {
+    "action": "send_custom_face",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "upload_video_to_qun_album",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "add_group_tag",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "delete_group_tag",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  },
+  {
+    "action": "get_group_tags",
+    "route": "当前审计源码未确认支持",
+    "generated": false
+  }
+]

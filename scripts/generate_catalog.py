@@ -131,6 +131,20 @@ def generate(workspace: Path, snowluma: Path) -> dict[str, Any]:
         }
         entry["stream"] = "stream" in action
         entry["risk"] = risk(action, definition.category.value)
+        if action in {
+            "share_peer",
+            "share_group_ex",
+            "send_ark_share",
+            "send_group_ark_share",
+        }:
+            entry["description"] = (
+                "获取用户/群推荐Ark卡片内容"
+                if action in {"share_peer", "send_ark_share"}
+                else "获取群推荐Ark卡片内容"
+            )
+            entry["compatibility"] = (
+                "SnowLuma extended.ts声明readOnly=true：仅获取推荐卡片内容；名称中的send不代表发送消息"
+            )
         if action in native:
             entry["native_parameters"] = native[action]
         if action == "fetch_emoji_like":
@@ -249,6 +263,14 @@ def risk(action: str, category: str) -> str:
         return "stream_unavailable"
     if action in {"set_friend_add_request", "set_group_add_request"}:
         return "approval_only"
+    # SnowLuma extended.ts 的 readOnly 声明：这些 send/share 名称只获取卡片。
+    if action in {
+        "share_peer",
+        "share_group_ex",
+        "send_ark_share",
+        "send_group_ark_share",
+    }:
+        return "read"
     if action.startswith(
         ("get_", "fetch_", "can_", "check_", "query_", "ocr_")
     ) or action in {"_get_group_notice", "get_group_msg_history"}:
