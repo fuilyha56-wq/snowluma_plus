@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "origin": "E:/SnowLuma/packages/onebot/src/event-converter/to-notice.ts 和 to-request.ts 的真实字段契约；标识符为合成值",
+    "log_regression": "logs/mofox_20261021_182524_776774_08abcc7f_2026-10-21.log:8178-8179 的原消息不存在回归",
+    "is_live_capture": false,
+    "missing_fields": "原日志未含完整协议原包；未伪称真实平台抓包。昵称、原消息、API结果均未编造。"
+  },
+  "events": [
+    {"post_type":"notice","notice_type":"group_msg_emoji_like","sub_type":"add","self_id":"90001","group_id":"20001","user_id":"10001","operator_id":"10001","message_id":"777","time":1792500000,"likes":[{"emoji_id":"66","count":1}]},
+    {"post_type":"notice","notice_type":"notify","sub_type":"title","self_id":"90001","group_id":"20001","user_id":"10001","title":"雪光","time":1792500000},
+    {"post_type":"request","request_type":"friend","self_id":"90001","user_id":"10001","comment":"合成好友申请","flag":"fixture-only-not-a-real-flag","time":1792500000},
+    {"post_type":"request","request_type":"group","sub_type":"invite","self_id":"90001","group_id":"20001","user_id":"10001","invited_id":"90001","comment":"合成邀请","flag":"fixture-only-invite","time":1792500000},
+    {"post_type":"notice","notice_type":"future_notice","self_id":"90001","extension":{"new_field":"保真"},"time":1792500000123}
+  ]
+}

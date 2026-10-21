@@ -1,0 +1,6802 @@
+{
+  "schema": 1,
+  "expand_version": "1.0.22",
+  "expand_api_count": 220,
+  "expand_defs_sha256": "672c0e01aefff5cd705b8aab6ddc8c69569183b27b2a460c87cf269412dd3592",
+  "snowluma_source_version": "1.14.14",
+  "source_actions_sha256": "14177bc893881f454e091ade535ed910e8fe3397de33c73497e8decc13e96752",
+  "actions": [
+    {
+      "action": "send_group_msg",
+      "category": "message",
+      "description": "发送群聊消息",
+      "params": {
+        "group_id": "int",
+        "message": "list[dict]",
+        "auto_escape": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_group_msg",
+      "arguments": [
+        "group_id",
+        "message",
+        "auto_escape"
+      ],
+      "required": [
+        "group_id",
+        "message"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "send_private_msg",
+      "category": "message",
+      "description": "发送私聊消息",
+      "params": {
+        "user_id": "int",
+        "message": "list[dict]",
+        "auto_escape": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_private_msg",
+      "arguments": [
+        "user_id",
+        "message",
+        "auto_escape"
+      ],
+      "required": [
+        "user_id",
+        "message"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "auto_escape",
+          "group_id",
+          "message",
+          "user_id"
+        ],
+        "required": [
+          "message",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "send_msg",
+      "category": "message",
+      "description": "发送消息（通用，按 message_type 或 user_id/group_id 自动路由）",
+      "params": {
+        "message_type": "str",
+        "user_id": "int",
+        "group_id": "int",
+        "message": "list[dict]",
+        "auto_escape": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_msg",
+      "arguments": [
+        "message",
+        "message_type",
+        "user_id",
+        "group_id",
+        "auto_escape"
+      ],
+      "required": [
+        "message"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "auto_escape",
+          "group_id",
+          "message",
+          "message_type",
+          "user_id"
+        ],
+        "required": [
+          "message"
+        ]
+      }
+    },
+    {
+      "action": "delete_msg",
+      "category": "message",
+      "description": "撤回消息",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "delete_msg",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_msg",
+      "category": "message",
+      "description": "获取消息详情",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "get_msg",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_forward_msg",
+      "category": "message",
+      "description": "获取合并转发消息内容",
+      "params": {
+        "id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "get_forward_msg",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "send_like",
+      "category": "message",
+      "description": "发送名片点赞",
+      "params": {
+        "user_id": "int",
+        "times": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_like",
+      "arguments": [
+        "user_id",
+        "times"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "times",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "send_poke",
+      "category": "message",
+      "description": "发送戳一戳（NapCat 扩展，自动路由版，等价于 friend_poke + group_poke）",
+      "params": {
+        "user_id": "int",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_poke",
+      "arguments": [
+        "user_id",
+        "group_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "send_forward_msg",
+      "category": "message",
+      "description": "发送合并转发消息（NapCat 扩展，自动路由）",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "messages": "list[dict]",
+        "news": "list[dict]",
+        "prompt": "str",
+        "summary": "str",
+        "source_type": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_forward_msg",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "messages"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "send_group_forward_msg",
+      "category": "message",
+      "description": "发送群合并转发消息（go-cqhttp兼容）",
+      "params": {
+        "group_id": "int",
+        "messages": "list[dict]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_group_forward_msg",
+      "arguments": [
+        "group_id",
+        "messages"
+      ],
+      "required": [
+        "group_id",
+        "messages"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "send_private_forward_msg",
+      "category": "message",
+      "description": "发送私聊合并转发消息（go-cqhttp兼容）",
+      "params": {
+        "user_id": "int",
+        "messages": "list[dict]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "send_private_forward_msg",
+      "arguments": [
+        "user_id",
+        "messages"
+      ],
+      "required": [
+        "user_id",
+        "messages"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_msg_history",
+      "category": "message",
+      "description": "获取群消息历史（go-cqhttp兼容）",
+      "params": {
+        "group_id": "int",
+        "message_seq": "int",
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "get_group_msg_history",
+      "arguments": [
+        "group_id",
+        "message_seq",
+        "count"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "group_id",
+          "message_id",
+          "reverse_order"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_friend_msg_history",
+      "category": "message",
+      "description": "获取好友消息历史（go-cqhttp兼容）",
+      "params": {
+        "user_id": "int",
+        "message_seq": "int",
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "get_friend_msg_history",
+      "arguments": [
+        "user_id",
+        "message_seq",
+        "count"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "message_id",
+          "reverse_order",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "forward_friend_single_msg",
+      "category": "message",
+      "description": "转发单条消息给好友（扩展）",
+      "params": {
+        "message_id": "int | str",
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "forward_friend_single_msg",
+      "arguments": [
+        "message_id",
+        "user_id"
+      ],
+      "required": [
+        "message_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "message_id",
+          "user_id"
+        ],
+        "required": [
+          "message_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "forward_group_single_msg",
+      "category": "message",
+      "description": "转发单条消息到群（扩展）",
+      "params": {
+        "message_id": "int | str",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "forward_group_single_msg",
+      "arguments": [
+        "message_id",
+        "group_id"
+      ],
+      "required": [
+        "message_id",
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "message_id"
+        ],
+        "required": [
+          "group_id",
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "mark_msg_as_read",
+      "category": "message",
+      "description": "标记消息已读（go-cqhttp兼容）",
+      "params": {
+        "message_id": "int | str",
+        "target_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "mark_msg_as_read",
+      "arguments": [
+        "message_id",
+        "target_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "message_id",
+          "target_id"
+        ],
+        "required": [
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "mark_group_msg_as_read",
+      "category": "message",
+      "description": "标记群消息已读（扩展）",
+      "params": {
+        "message_id": "int | str",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "mark_group_msg_as_read",
+      "arguments": [
+        "message_id",
+        "group_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "message_id"
+        ],
+        "required": [
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "mark_private_msg_as_read",
+      "category": "message",
+      "description": "标记私聊消息已读（扩展）",
+      "params": {
+        "message_id": "int | str",
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "mark_private_msg_as_read",
+      "arguments": [
+        "message_id",
+        "user_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "message_id",
+          "user_id"
+        ],
+        "required": [
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "_mark_all_as_read",
+      "category": "message",
+      "description": "标记全部已读（扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "_mark_all_as_read",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "upload_forward_msg",
+      "category": "message",
+      "description": "上传合并转发消息，返回 res_id（SnowLuma 扩展）",
+      "params": {
+        "messages": "list[dict]",
+        "message": "list[dict]",
+        "group_id": "int"
+      },
+      "aliases": [
+        "upload_foward_msg"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:message_service",
+      "method": "upload_forward_msg",
+      "arguments": [
+        "messages",
+        "group_id"
+      ],
+      "required": [
+        "messages"
+      ],
+      "file": "plugins/onebot_expand/services/message_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "message",
+          "messages"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "set_group_kick",
+      "category": "group",
+      "description": "踢出群成员",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "reject_add_request": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "kick",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "reject_add_request"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_ban",
+      "category": "group",
+      "description": "禁言群成员",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "duration": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "ban",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "duration"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_anonymous_ban",
+      "category": "group",
+      "description": "禁言匿名群成员（三方协议端均未实现，仅保留标准定义）",
+      "params": {
+        "group_id": "int",
+        "anonymous": "dict",
+        "anonymous_flag": "str",
+        "duration": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "anonymous_ban",
+      "arguments": [
+        "group_id",
+        "anonymous",
+        "anonymous_flag",
+        "duration"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_group_whole_ban",
+      "category": "group",
+      "description": "全体禁言",
+      "params": {
+        "group_id": "int",
+        "enable": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "whole_ban",
+      "arguments": [
+        "group_id",
+        "enable"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_admin",
+      "category": "group",
+      "description": "设置/取消管理员",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "enable": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_admin",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "enable"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_anonymous",
+      "category": "group",
+      "description": "开启/关闭匿名聊天（三方协议端均未实现，仅保留标准定义）",
+      "params": {
+        "group_id": "int",
+        "enable": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_anonymous",
+      "arguments": [
+        "group_id",
+        "enable"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_group_card",
+      "category": "group",
+      "description": "设置群名片",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "card": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_card",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "card"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_name",
+      "category": "group",
+      "description": "设置群名",
+      "params": {
+        "group_id": "int",
+        "group_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_group_name",
+      "arguments": [
+        "group_id",
+        "group_name"
+      ],
+      "required": [
+        "group_id",
+        "group_name"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_leave",
+      "category": "group",
+      "description": "退出群聊",
+      "params": {
+        "group_id": "int",
+        "is_dismiss": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "leave",
+      "arguments": [
+        "group_id",
+        "is_dismiss"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_special_title",
+      "category": "group",
+      "description": "设置专属头衔",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "special_title": "str",
+        "duration": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_special_title",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "special_title",
+        "duration"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_member_invite_policy",
+      "category": "group",
+      "description": "设置群成员邀请策略（NapCat / SnowLuma 扩展）",
+      "params": {
+        "group_id": "str",
+        "policy": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_member_invite_policy",
+      "arguments": [
+        "group_id",
+        "policy"
+      ],
+      "required": [
+        "group_id",
+        "policy"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "policy"
+        ],
+        "required": [
+          "group_id",
+          "policy"
+        ]
+      }
+    },
+    {
+      "action": "set_group_member_permissions",
+      "category": "group",
+      "description": "设置群成员功能权限（NapCat / SnowLuma 扩展）",
+      "params": {
+        "group_id": "str",
+        "allow_member_upload_album": "bool",
+        "allow_member_temporary_session": "bool",
+        "allow_member_create_group": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_member_permissions",
+      "arguments": [
+        "group_id",
+        "allow_member_upload_album",
+        "allow_member_temporary_session",
+        "allow_member_create_group"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "allow_member_create_group",
+          "allow_member_temporary_session",
+          "allow_member_upload_album",
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_new_member_history_visibility",
+      "category": "group",
+      "description": "设置新成员历史消息可见性（NapCat / SnowLuma 扩展）",
+      "params": {
+        "group_id": "str",
+        "visible": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "set_new_member_history_visibility",
+      "arguments": [
+        "group_id",
+        "visible"
+      ],
+      "required": [
+        "group_id",
+        "visible"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_admin_settings",
+      "category": "group",
+      "description": "获取群管理设置当前值（SnowLuma 扩展，返回加群选项/邀请策略/成员权限/搜索开关等）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_service",
+      "method": "get_admin_settings",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "upload_group_file",
+      "category": "file",
+      "description": "上传群文件",
+      "params": {
+        "file_path": "str",
+        "group_id": "int",
+        "name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "upload_group_file",
+      "arguments": [
+        "group_id",
+        "file_path",
+        "name"
+      ],
+      "required": [
+        "group_id",
+        "file_path",
+        "name"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "file",
+          "folder",
+          "folder_id",
+          "group_id",
+          "name",
+          "upload_file"
+        ],
+        "required": [
+          "file",
+          "group_id"
+        ]
+      },
+      "compatibility": "使用公开适配器命令发送已核验同主机的规范路径，避免Expand PathMapper在检查之后重映射为未核验远端路径；普通聊天文件优先snowluma_send"
+    },
+    {
+      "action": "upload_private_file",
+      "category": "file",
+      "description": "上传私聊文件",
+      "params": {
+        "file_path": "str",
+        "user_id": "int",
+        "name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "upload_private_file",
+      "arguments": [
+        "user_id",
+        "file_path",
+        "name"
+      ],
+      "required": [
+        "user_id",
+        "file_path",
+        "name"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "file",
+          "name",
+          "upload_file",
+          "user_id"
+        ],
+        "required": [
+          "file",
+          "user_id"
+        ]
+      },
+      "compatibility": "使用公开适配器命令发送已核验同主机的规范路径，避免Expand PathMapper在检查之后重映射为未核验远端路径；普通聊天文件优先snowluma_send"
+    },
+    {
+      "action": "get_file",
+      "category": "file",
+      "description": "获取文件信息（NapCat 扩展）",
+      "params": {
+        "file_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "get_file",
+      "arguments": [
+        "file_id"
+      ],
+      "required": [
+        "file_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "file",
+          "file_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_image",
+      "category": "file",
+      "description": "获取图片信息",
+      "params": {
+        "file": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "get_image",
+      "arguments": [
+        "file"
+      ],
+      "required": [
+        "file"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "file",
+          "file_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_record",
+      "category": "file",
+      "description": "获取语音文件信息",
+      "params": {
+        "file": "str",
+        "out_format": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "get_record",
+      "arguments": [
+        "file",
+        "out_format"
+      ],
+      "required": [
+        "file"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "file",
+          "file_id",
+          "out_format"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "send_online_file",
+      "category": "file",
+      "description": "发送在线文件（私聊，NapCat 扩展）",
+      "params": {
+        "user_id": "int",
+        "file_path": "str",
+        "file_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "send_online_file",
+      "arguments": [
+        "user_id",
+        "file_path",
+        "file_name"
+      ],
+      "required": [
+        "user_id",
+        "file_path"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "send_online_folder",
+      "category": "file",
+      "description": "发送在线文件夹（私聊，NapCat 扩展）",
+      "params": {
+        "user_id": "int",
+        "folder_path": "str",
+        "folder_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "send_online_folder",
+      "arguments": [
+        "user_id",
+        "folder_path",
+        "folder_name"
+      ],
+      "required": [
+        "user_id",
+        "folder_path"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_online_file_msg",
+      "category": "file",
+      "description": "获取在线文件消息列表（NapCat 扩展）",
+      "params": {
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "get_online_file_msg",
+      "arguments": [
+        "user_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "receive_online_file",
+      "category": "file",
+      "description": "接收在线文件（NapCat 扩展）",
+      "params": {
+        "user_id": "int",
+        "msg_id": "str",
+        "element_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "receive_online_file",
+      "arguments": [
+        "user_id",
+        "msg_id",
+        "element_id"
+      ],
+      "required": [
+        "user_id",
+        "msg_id",
+        "element_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "refuse_online_file",
+      "category": "file",
+      "description": "拒绝在线文件（NapCat 扩展）",
+      "params": {
+        "user_id": "int",
+        "msg_id": "str",
+        "element_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "refuse_online_file",
+      "arguments": [
+        "user_id",
+        "msg_id",
+        "element_id"
+      ],
+      "required": [
+        "user_id",
+        "msg_id",
+        "element_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "cancel_online_file",
+      "category": "file",
+      "description": "取消已发送的在线文件（NapCat 扩展）",
+      "params": {
+        "user_id": "int",
+        "msg_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:file_service",
+      "method": "cancel_online_file",
+      "arguments": [
+        "user_id",
+        "msg_id"
+      ],
+      "required": [
+        "user_id",
+        "msg_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "clean_stream_temp_file",
+      "category": "file",
+      "description": "清理流式传输临时文件（NapCat 与 SnowLuma 均支持）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "clean_stream_temp_file",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": true,
+      "risk": "stream_unavailable",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "upload_file_stream",
+      "category": "file",
+      "description": "流式上传文件（分块传输，NapCat 与 SnowLuma 均支持）",
+      "params": {
+        "stream_id": "str",
+        "chunk_data": "str",
+        "chunk_index": "int",
+        "total_chunks": "int",
+        "file_size": "int",
+        "expected_sha256": "str",
+        "is_complete": "bool",
+        "filename": "str",
+        "reset": "bool",
+        "verify_only": "bool",
+        "file_retention": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "upload_file_stream",
+      "arguments": [
+        "stream_id",
+        "chunk_data",
+        "chunk_index",
+        "total_chunks",
+        "file_size",
+        "expected_sha256",
+        "is_complete",
+        "filename",
+        "reset",
+        "verify_only",
+        "file_retention"
+      ],
+      "required": [
+        "stream_id"
+      ],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": true,
+      "risk": "stream_unavailable"
+    },
+    {
+      "action": "download_file_stream",
+      "category": "file",
+      "description": "流式下载文件（分块传输，NapCat 与 SnowLuma 均支持）",
+      "params": {
+        "file": "str",
+        "file_id": "str",
+        "chunk_size": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "download_file_stream",
+      "arguments": [
+        "file",
+        "file_id",
+        "chunk_size"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": true,
+      "risk": "stream_unavailable"
+    },
+    {
+      "action": "download_file_record_stream",
+      "category": "file",
+      "description": "流式下载语音文件（NapCat 支持 out_format 转码；SnowLuma 仅下载原始格式）",
+      "params": {
+        "file": "str",
+        "file_id": "str",
+        "chunk_size": "int",
+        "out_format": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "download_file_record_stream",
+      "arguments": [
+        "file",
+        "file_id",
+        "chunk_size",
+        "out_format"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": true,
+      "risk": "stream_unavailable"
+    },
+    {
+      "action": "download_file_image_stream",
+      "category": "file",
+      "description": "流式下载图片文件（NapCat 与 SnowLuma 均支持）",
+      "params": {
+        "file": "str",
+        "file_id": "str",
+        "chunk_size": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:file_service",
+      "method": "download_file_image_stream",
+      "arguments": [
+        "file",
+        "file_id",
+        "chunk_size"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/file_service.py",
+      "stream": true,
+      "risk": "stream_unavailable"
+    },
+    {
+      "action": "get_login_info",
+      "category": "account",
+      "description": "获取 Bot 登录信息",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "_load_self_uin",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_stranger_info",
+      "category": "account",
+      "description": "获取陌生人信息",
+      "params": {
+        "user_id": "int",
+        "no_cache": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_stranger_info",
+      "arguments": [
+        "user_id",
+        "no_cache"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_friend_list",
+      "category": "account",
+      "description": "获取好友列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_friend_list",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_list",
+      "category": "account",
+      "description": "获取群列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_list",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_member_list",
+      "category": "account",
+      "description": "获取群成员列表",
+      "params": {
+        "group_id": "int",
+        "no_cache": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_member_list",
+      "arguments": [
+        "group_id",
+        "no_cache"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_member_info",
+      "category": "account",
+      "description": "获取群成员详情",
+      "params": {
+        "group_id": "int",
+        "user_id": "int",
+        "no_cache": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_member_info",
+      "arguments": [
+        "group_id",
+        "user_id",
+        "no_cache"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_info",
+      "category": "account",
+      "description": "获取群信息",
+      "params": {
+        "group_id": "int",
+        "no_cache": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_info",
+      "arguments": [
+        "group_id",
+        "no_cache"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_detail_info",
+      "category": "account",
+      "description": "获取群详细信息（NapCat 扩展）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_detail_info",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "no_cache"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_honor_info",
+      "category": "account",
+      "description": "获取群荣誉信息",
+      "params": {
+        "group_id": "int",
+        "type": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_group_honor_info",
+      "arguments": [
+        "group_id",
+        "honor_type"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_robot_uin_range",
+      "category": "account",
+      "description": "获取机器人 UIN 范围（NapCat 扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:account_service",
+      "method": "get_robot_uin_range",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/account_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "set_msg_emoji_like",
+      "category": "napcat_ext",
+      "description": "对消息添加/取消表情回应",
+      "params": {
+        "message_id": "int | str",
+        "emoji_id": "int",
+        "set": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "set_msg_emoji_like",
+      "arguments": [
+        "message_id",
+        "emoji_id",
+        "set"
+      ],
+      "required": [
+        "message_id",
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "emoji_id",
+          "message_id",
+          "set"
+        ],
+        "required": [
+          "emoji_id",
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "get_essence_msg_list",
+      "category": "napcat_ext",
+      "description": "获取群精华消息列表（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_essence_msg_list",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_online_clients",
+      "category": "napcat_ext",
+      "description": "获取在线客户端列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_online_clients",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "no_cache"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_cookies",
+      "category": "napcat_ext",
+      "description": "获取 Cookies",
+      "params": {
+        "domain": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "_get_compatibility_client",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_csrf_token",
+      "category": "napcat_ext",
+      "description": "获取 CSRF Token",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_csrf_token",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_status",
+      "category": "napcat_ext",
+      "description": "获取协议端运行状态",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_status",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_restart",
+      "category": "napcat_ext",
+      "description": "重启协议端",
+      "params": {
+        "delay": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "set_restart",
+      "arguments": [
+        "delay"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "clean_cache",
+      "category": "napcat_ext",
+      "description": "清理协议端缓存",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "clean_cache",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "can_send_image",
+      "category": "napcat_ext",
+      "description": "检查是否支持发送图片",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "can_send_image",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "can_send_record",
+      "category": "napcat_ext",
+      "description": "检查是否支持发送语音",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "can_send_record",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_version_info",
+      "category": "napcat_ext",
+      "description": "获取协议端版本信息",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_version_info",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_essence_msg",
+      "category": "napcat_ext",
+      "description": "设置精华消息（go-cqhttp兼容）",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "set_essence_msg",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "delete_essence_msg",
+      "category": "napcat_ext",
+      "description": "删除精华消息（go-cqhttp兼容）",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "delete_essence_msg",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_at_all_remain",
+      "category": "napcat_ext",
+      "description": "获取@全体剩余次数（go-cqhttp兼容）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "get_group_at_all_remain",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "fetch_ptt_text",
+      "category": "napcat_ext",
+      "description": "获取语音转文字（扩展）",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [
+        "get_ptt_text",
+        "get_record_text",
+        "voice_msg_to_text"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:napcat_ext_service",
+      "method": "fetch_ptt_text",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/napcat_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "message_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_file_url",
+      "category": "group_file",
+      "description": "获取群文件下载链接（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str",
+        "busid": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "get_group_file_url",
+      "arguments": [
+        "group_id",
+        "file_id",
+        "busid"
+      ],
+      "required": [
+        "group_id",
+        "file_id",
+        "busid"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_root_files",
+      "category": "group_file",
+      "description": "获取群根目录文件（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "get_group_root_files",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_files_by_folder",
+      "category": "group_file",
+      "description": "获取群子目录文件（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int",
+        "folder_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "get_group_files_by_folder",
+      "arguments": [
+        "group_id",
+        "folder_id"
+      ],
+      "required": [
+        "group_id",
+        "folder_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "delete_group_file",
+      "category": "group_file",
+      "description": "删除群文件（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str",
+        "busid": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "delete_group_file",
+      "arguments": [
+        "group_id",
+        "file_id",
+        "busid"
+      ],
+      "required": [
+        "group_id",
+        "file_id",
+        "busid"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "create_group_file_folder",
+      "category": "group_file",
+      "description": "创建群文件夹（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int",
+        "name": "str",
+        "parent_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "create_group_file_folder",
+      "arguments": [
+        "group_id",
+        "name",
+        "parent_id"
+      ],
+      "required": [
+        "group_id",
+        "name"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "delete_group_folder",
+      "category": "group_file",
+      "description": "删除群文件夹（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int",
+        "folder_id": "str"
+      },
+      "aliases": [
+        "delete_group_file_folder"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "delete_group_folder",
+      "arguments": [
+        "group_id",
+        "folder_id"
+      ],
+      "required": [
+        "group_id",
+        "folder_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_file_system_info",
+      "category": "group_file",
+      "description": "获取群文件系统信息（go-cqhttp 兼容）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "get_group_file_system_info",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "move_group_file",
+      "category": "group_file",
+      "description": "移动群文件（扩展）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str",
+        "parent_directory": "str",
+        "target_directory": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "move_group_file",
+      "arguments": [
+        "group_id",
+        "file_id",
+        "parent_directory",
+        "target_directory"
+      ],
+      "required": [
+        "group_id",
+        "file_id",
+        "parent_directory",
+        "target_directory"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "file_id",
+          "group_id",
+          "parent_directory",
+          "target_directory"
+        ],
+        "required": [
+          "file_id",
+          "group_id",
+          "parent_directory",
+          "target_directory"
+        ]
+      }
+    },
+    {
+      "action": "rename_group_file",
+      "category": "group_file",
+      "description": "重命名群文件（扩展）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str",
+        "current_parent_directory": "str",
+        "new_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "rename_group_file",
+      "arguments": [
+        "group_id",
+        "file_id",
+        "current_parent_directory",
+        "new_name"
+      ],
+      "required": [
+        "group_id",
+        "file_id",
+        "current_parent_directory",
+        "new_name"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "current_parent_directory",
+          "file_id",
+          "group_id",
+          "new_name"
+        ],
+        "required": [
+          "file_id",
+          "group_id",
+          "new_name"
+        ]
+      }
+    },
+    {
+      "action": "rename_group_file_folder",
+      "category": "group_file",
+      "description": "重命名群文件夹（SnowLuma 扩展）",
+      "params": {
+        "group_id": "int",
+        "folder_id": "str",
+        "new_folder_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "rename_group_file_folder",
+      "arguments": [
+        "group_id",
+        "folder_id",
+        "new_folder_name"
+      ],
+      "required": [
+        "group_id",
+        "folder_id",
+        "new_folder_name"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "trans_group_file",
+      "category": "group_file",
+      "description": "转存群文件（扩展）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "trans_group_file",
+      "arguments": [
+        "group_id",
+        "file_id"
+      ],
+      "required": [
+        "group_id",
+        "file_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "file_id",
+          "group_id"
+        ],
+        "required": [
+          "file_id",
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_private_file_url",
+      "category": "group_file",
+      "description": "获取私聊文件下载链接（SnowLuma 扩展）",
+      "params": {
+        "user_id": "int",
+        "file_id": "str",
+        "file_hash": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "get_private_file_url",
+      "arguments": [
+        "file_id",
+        "file_hash"
+      ],
+      "required": [
+        "file_id",
+        "file_hash"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "file_hash",
+          "file_id",
+          "user_id"
+        ],
+        "required": [
+          "file_id"
+        ]
+      }
+    },
+    {
+      "action": "_send_group_notice",
+      "category": "group_notice",
+      "description": "发送群公告",
+      "params": {
+        "group_id": "int",
+        "content": "str",
+        "image": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_notice_service",
+      "method": "send_group_notice",
+      "arguments": [
+        "group_id",
+        "content",
+        "image"
+      ],
+      "required": [
+        "group_id",
+        "content"
+      ],
+      "file": "plugins/onebot_expand/services/group_notice_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "confirm_required",
+          "content",
+          "group_id",
+          "image",
+          "is_show_edit_card",
+          "pinned",
+          "send_to_new_members",
+          "tip_window_type",
+          "type"
+        ],
+        "required": [
+          "content",
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "_get_group_notice",
+      "category": "group_notice",
+      "description": "获取群公告",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_notice_service",
+      "method": "get_group_notice",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_notice_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "_del_group_notice",
+      "category": "group_notice",
+      "description": "删除群公告",
+      "params": {
+        "group_id": "int",
+        "notice_id": "str"
+      },
+      "aliases": [
+        "_delete_group_notice"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_notice_service",
+      "method": "del_group_notice",
+      "arguments": [
+        "group_id",
+        "notice_id"
+      ],
+      "required": [
+        "group_id",
+        "notice_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_notice_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_portrait",
+      "category": "group_ext",
+      "description": "设置群头像",
+      "params": {
+        "group_id": "int",
+        "file": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_portrait",
+      "arguments": [
+        "group_id",
+        "file"
+      ],
+      "required": [
+        "group_id",
+        "file"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_remark",
+      "category": "group_ext",
+      "description": "设置群备注",
+      "params": {
+        "group_id": "int",
+        "remark": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_remark",
+      "arguments": [
+        "group_id",
+        "remark"
+      ],
+      "required": [
+        "group_id",
+        "remark"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "remark"
+        ],
+        "required": [
+          "group_id",
+          "remark"
+        ]
+      }
+    },
+    {
+      "action": "set_group_add_option",
+      "category": "group_ext",
+      "description": "设置加群选项",
+      "params": {
+        "group_id": "int",
+        "add_type": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_add_option",
+      "arguments": [
+        "group_id",
+        "add_type"
+      ],
+      "required": [
+        "group_id",
+        "add_type"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "add_type",
+          "group_answer",
+          "group_id",
+          "group_question"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_search",
+      "category": "group_ext",
+      "description": "允许群被搜索",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_search",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "no_code_finger_open",
+          "no_finger_open"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_robot_add_option",
+      "category": "group_ext",
+      "description": "设置群机器人加群选项",
+      "params": {
+        "group_id": "int",
+        "robot_member_switch": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_robot_add_option",
+      "arguments": [
+        "group_id",
+        "robot_member_switch"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "robot_member_examine",
+          "robot_member_switch"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_group_kick_members",
+      "category": "group_ext",
+      "description": "批量踢出群成员",
+      "params": {
+        "group_id": "int",
+        "user_id_list": "list[int]",
+        "reject_add_request": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_kick_members",
+      "arguments": [
+        "group_id",
+        "user_id_list",
+        "reject_add_request"
+      ],
+      "required": [
+        "group_id",
+        "user_id_list"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_shut_list",
+      "category": "group_ext",
+      "description": "获取群禁言列表",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_shut_list",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_ignored_notifies",
+      "category": "group_ext",
+      "description": "获取被过滤的入群请求",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_ignored_notifies",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_ignore_add_request",
+      "category": "group_ext",
+      "description": "获取被忽略的入群请求",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_ignore_add_request",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_group_info_ex",
+      "category": "group_ext",
+      "description": "获取群信息扩展",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_info_ex",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "no_cache"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_share_link",
+      "category": "group_ext",
+      "description": "获取群分享链接（NapCat 专属）",
+      "params": {
+        "group_id": "int | str",
+        "need_short_url": "bool | str",
+        "src_id": "int | str",
+        "additional_param": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_share_link",
+      "arguments": [
+        "group_id",
+        "need_short_url",
+        "src_id",
+        "additional_param"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "set_group_sign",
+      "category": "group_ext",
+      "description": "群签到",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [
+        "send_group_sign"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "set_group_sign",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_signed_list",
+      "category": "group_ext",
+      "description": "获取群今日打卡列表",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "get_group_signed_list",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "set_friend_add_request",
+      "category": "request",
+      "description": "处理好友添加请求（OB11标准）",
+      "params": {
+        "flag": "str",
+        "approve": "bool",
+        "remark": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:request_service",
+      "method": "set_friend_add_request",
+      "arguments": [
+        "flag",
+        "approve",
+        "remark"
+      ],
+      "required": [
+        "flag"
+      ],
+      "file": "plugins/onebot_expand/services/request_service.py",
+      "stream": false,
+      "risk": "approval_only",
+      "native_parameters": {
+        "arguments": [
+          "approve",
+          "flag"
+        ],
+        "required": [
+          "flag"
+        ]
+      }
+    },
+    {
+      "action": "set_group_add_request",
+      "category": "request",
+      "description": "处理加群请求（OB11标准）",
+      "params": {
+        "flag": "str",
+        "sub_type": "str",
+        "approve": "bool",
+        "reason": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:request_service",
+      "method": "set_group_add_request",
+      "arguments": [
+        "flag",
+        "sub_type",
+        "approve",
+        "reason"
+      ],
+      "required": [
+        "flag",
+        "sub_type"
+      ],
+      "file": "plugins/onebot_expand/services/request_service.py",
+      "stream": false,
+      "risk": "approval_only",
+      "native_parameters": {
+        "arguments": [
+          "approve",
+          "flag",
+          "reason",
+          "sub_type",
+          "type"
+        ],
+        "required": [
+          "flag"
+        ]
+      }
+    },
+    {
+      "action": "get_group_system_msg",
+      "category": "request",
+      "description": "获取群系统消息（OB11标准）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:request_service",
+      "method": "get_group_system_msg",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/request_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "group_id",
+          "only_pending"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_doubt_friends_add_request",
+      "category": "request",
+      "description": "获取可疑好友申请（扩展）",
+      "params": {
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:request_service",
+      "method": "get_doubt_friends_add_request",
+      "arguments": [
+        "count"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/request_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_doubt_friends_add_request",
+      "category": "request",
+      "description": "处理可疑好友申请（扩展）",
+      "params": {
+        "flag": "str",
+        "approve": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:request_service",
+      "method": "set_doubt_friends_add_request",
+      "arguments": [
+        "flag",
+        "approve"
+      ],
+      "required": [
+        "flag"
+      ],
+      "file": "plugins/onebot_expand/services/request_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "approve",
+          "flag"
+        ],
+        "required": [
+          "flag"
+        ]
+      }
+    },
+    {
+      "action": "delete_friend",
+      "category": "user_ext",
+      "description": "删除好友",
+      "params": {
+        "user_id": "int",
+        "block": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "delete_friend",
+      "arguments": [
+        "user_id",
+        "block"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_friend_remark",
+      "category": "user_ext",
+      "description": "设置好友备注",
+      "params": {
+        "user_id": "int",
+        "remark": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "set_friend_remark",
+      "arguments": [
+        "user_id",
+        "remark"
+      ],
+      "required": [
+        "user_id",
+        "remark"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "remark",
+          "user_id"
+        ],
+        "required": [
+          "remark",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "get_friends_with_category",
+      "category": "user_ext",
+      "description": "获取分组好友列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "get_friends_with_category",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_unidirectional_friend_list",
+      "category": "user_ext",
+      "description": "获取单向好友列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "get_unidirectional_friend_list",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_qq_profile",
+      "category": "user_ext",
+      "description": "设置QQ资料（go-cqhttp 兼容）",
+      "params": {
+        "nickname": "str",
+        "personal_note": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "set_qq_profile",
+      "arguments": [
+        "nickname",
+        "personal_note"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "nickname",
+          "personal_note",
+          "sex"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "set_qq_avatar",
+      "category": "user_ext",
+      "description": "设置QQ头像",
+      "params": {
+        "file": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "set_qq_avatar",
+      "arguments": [
+        "file"
+      ],
+      "required": [
+        "file"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_self_longnick",
+      "category": "user_ext",
+      "description": "设置个性签名",
+      "params": {
+        "long_nick": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "set_self_longnick",
+      "arguments": [
+        "long_nick"
+      ],
+      "required": [
+        "long_nick"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_recent_contact",
+      "category": "user_ext",
+      "description": "获取最近联系人",
+      "params": {
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "get_recent_contact",
+      "arguments": [
+        "count"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_profile_like",
+      "category": "user_ext",
+      "description": "获取资料点赞",
+      "params": {
+        "user_id": "int",
+        "start": "int",
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "get_profile_like",
+      "arguments": [
+        "user_id",
+        "start",
+        "count"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "start",
+          "user_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "set_friends_category",
+      "category": "user_ext",
+      "description": "按分类 ID 或名称设置好友分类（SnowLuma 扩展）",
+      "params": {
+        "uin": "int",
+        "categoryId": "int",
+        "categoryName": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "set_friends_category",
+      "arguments": [
+        "uin",
+        "category_id",
+        "category_name"
+      ],
+      "required": [
+        "uin"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "categoryId",
+          "categoryName",
+          "uin"
+        ],
+        "required": [
+          "uin"
+        ]
+      }
+    },
+    {
+      "action": "set_online_status",
+      "category": "status",
+      "description": "设置在线状态",
+      "params": {
+        "status": "int",
+        "ext_status": "int",
+        "battery_status": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:status_service",
+      "method": "set_online_status",
+      "arguments": [
+        "status",
+        "ext_status",
+        "battery_status"
+      ],
+      "required": [
+        "status"
+      ],
+      "file": "plugins/onebot_expand/services/status_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "battery_status",
+          "ext_status",
+          "status"
+        ],
+        "required": [
+          "status"
+        ]
+      }
+    },
+    {
+      "action": "set_diy_online_status",
+      "category": "status",
+      "description": "设置自定义在线状态",
+      "params": {
+        "face_id": "int",
+        "face_type": "int",
+        "wording": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:status_service",
+      "method": "set_diy_online_status",
+      "arguments": [
+        "face_id",
+        "face_type",
+        "wording"
+      ],
+      "required": [
+        "face_id"
+      ],
+      "file": "plugins/onebot_expand/services/status_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "face_id",
+          "face_type",
+          "wording"
+        ],
+        "required": [
+          "face_id"
+        ]
+      }
+    },
+    {
+      "action": "set_input_status",
+      "category": "status",
+      "description": "设置输入状态",
+      "params": {
+        "user_id": "int",
+        "event_type": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:status_service",
+      "method": "set_input_status",
+      "arguments": [
+        "user_id",
+        "event_type"
+      ],
+      "required": [
+        "user_id",
+        "event_type"
+      ],
+      "file": "plugins/onebot_expand/services/status_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "event_type",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "nc_get_user_status",
+      "category": "status",
+      "description": "获取用户状态",
+      "params": {
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:status_service",
+      "method": "nc_get_user_status",
+      "arguments": [
+        "user_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/status_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "friend_poke",
+      "category": "poke",
+      "description": "好友戳一拍（显式好友版，等价于 send_poke(user_id=...)）",
+      "params": {
+        "user_id": "int",
+        "target_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:poke_service",
+      "method": "friend_poke",
+      "arguments": [
+        "user_id",
+        "target_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/poke_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "target_id",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "group_poke",
+      "category": "poke",
+      "description": "群戳一拍（显式群版，等价于 send_poke(group_id=...)）",
+      "params": {
+        "group_id": "int",
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:poke_service",
+      "method": "group_poke",
+      "arguments": [
+        "group_id",
+        "user_id"
+      ],
+      "required": [
+        "group_id",
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/poke_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "group_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "fetch_custom_face",
+      "category": "emoji_ext",
+      "description": "获取收藏表情",
+      "params": {
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_custom_face",
+      "arguments": [
+        "count"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "return_type"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "add_custom_face",
+      "category": "emoji_ext",
+      "description": "添加收藏表情",
+      "params": {
+        "file": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "add_custom_face",
+      "arguments": [
+        "file"
+      ],
+      "required": [
+        "file"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "delete_custom_face",
+      "category": "emoji_ext",
+      "description": "删除收藏表情",
+      "params": {
+        "emoji_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "delete_custom_face",
+      "arguments": [
+        "emoji_id"
+      ],
+      "required": [
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "fetch_custom_face_detail",
+      "category": "emoji_ext",
+      "description": "获取收藏表情详情列表（NapCat / SnowLuma 扩展）",
+      "params": {
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_custom_face_detail",
+      "arguments": [
+        "count"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "set_custom_face_desc",
+      "category": "emoji_ext",
+      "description": "修改收藏表情描述（NapCat 扩展）",
+      "params": {
+        "emoji_id": "int",
+        "res_id": "str",
+        "md5": "str",
+        "desc": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "set_custom_face_desc",
+      "arguments": [
+        "emoji_id",
+        "res_id",
+        "md5",
+        "desc"
+      ],
+      "required": [
+        "emoji_id",
+        "res_id",
+        "md5",
+        "desc"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "modify_custom_face",
+      "category": "emoji_ext",
+      "description": "修改收藏表情备注（SnowLuma 扩展）",
+      "params": {
+        "emoji_id": "str",
+        "desc": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "modify_custom_face",
+      "arguments": [
+        "emoji_id",
+        "desc"
+      ],
+      "required": [
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "desc",
+          "emoji_id"
+        ],
+        "required": [
+          "emoji_id"
+        ]
+      }
+    },
+    {
+      "action": "move_custom_face_to_front",
+      "category": "emoji_ext",
+      "description": "收藏表情移到最前（SnowLuma 扩展）",
+      "params": {
+        "emoji_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "move_custom_face_to_front",
+      "arguments": [
+        "emoji_id"
+      ],
+      "required": [
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "fetch_emoji_like",
+      "category": "emoji_ext",
+      "description": "获取表情回应分页",
+      "params": {
+        "message_id": "int | str",
+        "emoji_id": "str",
+        "count": "int",
+        "cursor": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_emoji_like",
+      "arguments": [
+        "message_id",
+        "emoji_id",
+        "count",
+        "cursor"
+      ],
+      "required": [
+        "message_id",
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "cookie",
+          "count",
+          "emojiId",
+          "message_id"
+        ],
+        "required": [
+          "emojiId",
+          "message_id"
+        ]
+      },
+      "compatibility": "公共Service缺少cookie且将emojiId写为emoji_id；Plus通过公开适配器命令最小兼容，cursor为分页游标，非账号Cookie"
+    },
+    {
+      "action": "get_emoji_likes",
+      "category": "emoji_ext",
+      "description": "获取表情回应用户",
+      "params": {
+        "message_id": "int | str",
+        "emoji_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "get_emoji_likes",
+      "arguments": [
+        "message_id",
+        "emoji_id"
+      ],
+      "required": [
+        "message_id",
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "emoji_id",
+          "message_id"
+        ],
+        "required": [
+          "emoji_id",
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "get_msg_emoji_likes",
+      "category": "emoji_ext",
+      "description": "获取一条消息的全部表情回应（SnowLuma 扩展，返回每个表情的编号/数量/用户列表）",
+      "params": {
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "get_msg_emoji_likes",
+      "arguments": [
+        "message_id"
+      ],
+      "required": [
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "set_group_reaction",
+      "category": "emoji_ext",
+      "description": "群聊消息表情回应（SnowLuma 扩展）",
+      "params": {
+        "group_id": "int",
+        "message_id": "int | str",
+        "code": "str",
+        "is_set": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "set_group_reaction",
+      "arguments": [
+        "message_id",
+        "code",
+        "group_id",
+        "is_set"
+      ],
+      "required": [
+        "message_id",
+        "code"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "code",
+          "group_id",
+          "is_set",
+          "message_id"
+        ],
+        "required": [
+          "code",
+          "message_id"
+        ]
+      }
+    },
+    {
+      "action": "fetch_sys_faces",
+      "category": "emoji_ext",
+      "description": "获取系统表情列表（SnowLuma 扩展）",
+      "params": {
+        "refresh": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_sys_faces",
+      "arguments": [
+        "refresh"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "fetch_face_entity",
+      "category": "emoji_ext",
+      "description": "获取系统表情实体（SnowLuma 扩展）",
+      "params": {
+        "face_id": "int",
+        "refresh": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_face_entity",
+      "arguments": [
+        "face_id",
+        "refresh"
+      ],
+      "required": [
+        "face_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "face_id",
+          "refresh"
+        ],
+        "required": [
+          "face_id",
+          "refresh"
+        ]
+      }
+    },
+    {
+      "action": "search_sys_faces",
+      "category": "emoji_ext",
+      "description": "搜索系统表情（SnowLuma 扩展）",
+      "params": {
+        "query": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "search_sys_faces",
+      "arguments": [
+        "query"
+      ],
+      "required": [
+        "query"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "query"
+        ],
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "action": "fetch_super_face_id",
+      "category": "emoji_ext",
+      "description": "判断系统表情是否使用超级表情格式（SnowLuma 扩展）",
+      "params": {
+        "face_id": "int",
+        "refresh": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "fetch_super_face_id",
+      "arguments": [
+        "face_id",
+        "refresh"
+      ],
+      "required": [
+        "face_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "face_id",
+          "refresh"
+        ],
+        "required": [
+          "face_id",
+          "refresh"
+        ]
+      }
+    },
+    {
+      "action": "get_ai_characters",
+      "category": "ai_voice",
+      "description": "获取AI语音角色",
+      "params": {
+        "group_id": "int",
+        "chat_type": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ai_voice_service",
+      "method": "get_ai_characters",
+      "arguments": [
+        "group_id",
+        "chat_type"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/ai_voice_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_ai_record",
+      "category": "ai_voice",
+      "description": "生成AI语音",
+      "params": {
+        "group_id": "int",
+        "character": "str",
+        "text": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ai_voice_service",
+      "method": "get_ai_record",
+      "arguments": [
+        "group_id",
+        "character",
+        "text"
+      ],
+      "required": [
+        "group_id",
+        "character",
+        "text"
+      ],
+      "file": "plugins/onebot_expand/services/ai_voice_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "character",
+          "chat_type",
+          "group_id",
+          "text"
+        ],
+        "required": [
+          "character",
+          "group_id",
+          "text"
+        ]
+      }
+    },
+    {
+      "action": "send_group_ai_record",
+      "category": "ai_voice",
+      "description": "发送群AI语音",
+      "params": {
+        "group_id": "int",
+        "character": "str",
+        "text": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ai_voice_service",
+      "method": "send_group_ai_record",
+      "arguments": [
+        "group_id",
+        "character",
+        "text"
+      ],
+      "required": [
+        "group_id",
+        "character",
+        "text"
+      ],
+      "file": "plugins/onebot_expand/services/ai_voice_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "character",
+          "chat_type",
+          "group_id",
+          "text"
+        ],
+        "required": [
+          "character",
+          "group_id",
+          "text"
+        ]
+      }
+    },
+    {
+      "action": "get_clientkey",
+      "category": "cred",
+      "description": "获取clientkey",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "get_clientkey",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_credentials",
+      "category": "cred",
+      "description": "获取凭证",
+      "params": {
+        "domain": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "get_credentials",
+      "arguments": [
+        "domain"
+      ],
+      "required": [
+        "domain"
+      ],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_rkey",
+      "category": "cred",
+      "description": "获取rkey",
+      "params": {},
+      "aliases": [
+        "nc_get_rkey"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "get_rkey",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_rkey_server",
+      "category": "cred",
+      "description": "获取rkey服务器信息（含过期时间和服务器名）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "get_rkey_server",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "check_url_safely",
+      "category": "cred",
+      "description": "检查链接安全性",
+      "params": {
+        "url": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "check_url_safely",
+      "arguments": [
+        "url"
+      ],
+      "required": [
+        "url"
+      ],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "ocr_image",
+      "category": "cred",
+      "description": "OCR图片（go-cqhttp 兼容）",
+      "params": {
+        "image": "str"
+      },
+      "aliases": [
+        ".ocr_image"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "ocr_image",
+      "arguments": [
+        "image"
+      ],
+      "required": [
+        "image"
+      ],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "download_file",
+      "category": "cred",
+      "description": "下载文件",
+      "params": {
+        "url": "str",
+        "name": "str",
+        "headers": "list[str]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "download_file",
+      "arguments": [
+        "url",
+        "name",
+        "headers"
+      ],
+      "required": [
+        "url"
+      ],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "request_decrypt_key",
+      "category": "cred",
+      "description": "请求数据库解密密钥（SnowLuma 扩展，传入 db_path）",
+      "params": {
+        "db_path": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:cred_service",
+      "method": "request_decrypt_key",
+      "arguments": [
+        "db_path"
+      ],
+      "required": [
+        "db_path"
+      ],
+      "file": "plugins/onebot_expand/services/cred_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "_get_model_show",
+      "category": "misc",
+      "description": "获取机型展示",
+      "params": {
+        "model": "str"
+      },
+      "aliases": [
+        "._get_model_show"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "get_model_show",
+      "arguments": [
+        "model"
+      ],
+      "required": [
+        "model"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "model"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "_set_model_show",
+      "category": "misc",
+      "description": "设置机型展示",
+      "params": {
+        "model": "str",
+        "show": "str"
+      },
+      "aliases": [
+        "._set_model_show"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "set_model_show",
+      "arguments": [
+        "model",
+        "show"
+      ],
+      "required": [
+        "model",
+        "show"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "bot_exit",
+      "category": "misc",
+      "description": "退出机器人",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "bot_exit",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "nc_get_packet_status",
+      "category": "misc",
+      "description": "获取packet状态",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "nc_get_packet_status",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "click_inline_keyboard_button",
+      "category": "misc",
+      "description": "点击内联键盘按钮",
+      "params": {
+        "group_id": "int",
+        "bot_appid": "int",
+        "msg_seq": "int",
+        "button_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "click_inline_keyboard_button",
+      "arguments": [
+        "group_id",
+        "bot_appid",
+        "msg_seq",
+        "button_id"
+      ],
+      "required": [
+        "group_id",
+        "bot_appid",
+        "msg_seq",
+        "button_id"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_mini_app_ark",
+      "category": "misc",
+      "description": "获取小程序卡片",
+      "params": {
+        "type": "str",
+        "title": "str",
+        "desc": "str",
+        "pic_url": "str",
+        "jump_url": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "get_mini_app_ark",
+      "arguments": [
+        "type",
+        "title",
+        "desc",
+        "pic_url",
+        "jump_url"
+      ],
+      "required": [
+        "type",
+        "title",
+        "desc",
+        "pic_url",
+        "jump_url"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "translate_en2zh",
+      "category": "misc",
+      "description": "英译中",
+      "params": {
+        "words": "list[str]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "translate_en2zh",
+      "arguments": [
+        "words"
+      ],
+      "required": [
+        "words"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "create_collection",
+      "category": "misc",
+      "description": "创建收藏",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "create_collection",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_collection_list",
+      "category": "misc",
+      "description": "获取收藏列表",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "get_collection_list",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "category",
+          "count"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "send_packet",
+      "category": "misc",
+      "description": "发送原始SSO包",
+      "params": {
+        "cmd": "str",
+        "data": "dict"
+      },
+      "aliases": [
+        ".send_packet"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:misc_service",
+      "method": "send_packet",
+      "arguments": [
+        "cmd",
+        "data"
+      ],
+      "required": [
+        "cmd"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "blocked",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "send_pb",
+      "category": "misc",
+      "description": "发送原始 Protobuf 数据（LLOneBot 扩展，SnowLuma 不支持）",
+      "params": {
+        "cmd": "str",
+        "hex": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "send_pb",
+      "arguments": [
+        "cmd",
+        "hex_data"
+      ],
+      "required": [
+        "cmd",
+        "hex_data"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "blocked"
+    },
+    {
+      "action": "handle_quick_operation",
+      "category": "misc",
+      "description": "go-cqhttp 快速操作（NapCat 与 SnowLuma 均支持，传入 context 与 operation）",
+      "params": {
+        "context": "dict",
+        "operation": "dict"
+      },
+      "aliases": [
+        ".handle_quick_operation"
+      ],
+      "expand_compatible": true,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "handle_quick_operation",
+      "arguments": [
+        "context",
+        "operation"
+      ],
+      "required": [
+        "context",
+        "operation"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_word_slices",
+      "category": "misc",
+      "description": "go-cqhttp 分词（NapCat 支持，SnowLuma 仅有未实现的点号占位 action）",
+      "params": {
+        "content": "str"
+      },
+      "aliases": [
+        ".get_word_slices"
+      ],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "get_word_slices",
+      "arguments": [
+        "content"
+      ],
+      "required": [
+        "content"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "create_flash_task",
+      "category": "flash",
+      "description": "创建闪传任务",
+      "params": {
+        "files": "list[dict]",
+        "name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "create_flash_task",
+      "arguments": [
+        "files",
+        "name"
+      ],
+      "required": [
+        "files"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "files",
+          "name",
+          "thumb_path"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "send_flash_msg",
+      "category": "flash",
+      "description": "发送闪传消息",
+      "params": {
+        "fileset_id": "str",
+        "user_id": "int",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "send_flash_msg",
+      "arguments": [
+        "fileset_id",
+        "user_id",
+        "group_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "fileset_id",
+          "group_id",
+          "user_id"
+        ],
+        "required": [
+          "fileset_id"
+        ]
+      }
+    },
+    {
+      "action": "get_flash_file_list",
+      "category": "flash",
+      "description": "获取闪传文件列表",
+      "params": {
+        "fileset_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "get_flash_file_list",
+      "arguments": [
+        "fileset_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_flash_file_url",
+      "category": "flash",
+      "description": "获取闪传文件URL",
+      "params": {
+        "fileset_id": "str",
+        "file_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "get_flash_file_url",
+      "arguments": [
+        "fileset_id",
+        "file_name"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "file_index",
+          "file_name",
+          "fileset_id"
+        ],
+        "required": [
+          "fileset_id"
+        ]
+      }
+    },
+    {
+      "action": "get_share_link",
+      "category": "flash",
+      "description": "获取文件分享链接",
+      "params": {
+        "fileset_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "get_share_link",
+      "arguments": [
+        "fileset_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "download_fileset",
+      "category": "flash",
+      "description": "下载文件集",
+      "params": {
+        "fileset_id": "str"
+      },
+      "aliases": [
+        "download_flash_file"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "download_fileset",
+      "arguments": [
+        "fileset_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "file_index",
+          "file_name",
+          "fileset_id"
+        ],
+        "required": [
+          "fileset_id"
+        ]
+      }
+    },
+    {
+      "action": "get_fileset_info",
+      "category": "flash",
+      "description": "获取文件集信息",
+      "params": {
+        "fileset_id": "str"
+      },
+      "aliases": [
+        "get_flash_file_info"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "get_fileset_info",
+      "arguments": [
+        "fileset_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_fileset_id",
+      "category": "flash",
+      "description": "从分享码获取fileset_id",
+      "params": {
+        "share_code": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "get_fileset_id",
+      "arguments": [
+        "share_code"
+      ],
+      "required": [
+        "share_code"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "share_code"
+        ],
+        "required": [
+          "share_code"
+        ]
+      }
+    },
+    {
+      "action": "list_filesets",
+      "category": "flash",
+      "description": "列出当前账号所有闪传文件集（SnowLuma 扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "list_filesets",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "delete_flash_file",
+      "category": "flash",
+      "description": "删除闪传文件（SnowLuma 扩展）",
+      "params": {
+        "fileset_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "delete_flash_file",
+      "arguments": [
+        "fileset_id"
+      ],
+      "required": [
+        "fileset_id"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "rename_flash_file",
+      "category": "flash",
+      "description": "重命名闪传文件（SnowLuma 扩展）",
+      "params": {
+        "fileset_id": "str",
+        "new_name": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:flash_service",
+      "method": "rename_flash_file",
+      "arguments": [
+        "fileset_id",
+        "new_name"
+      ],
+      "required": [
+        "fileset_id",
+        "new_name"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "fileset_id",
+          "new_name"
+        ],
+        "required": [
+          "fileset_id",
+          "new_name"
+        ]
+      }
+    },
+    {
+      "action": "get_qun_album_list",
+      "category": "group_album",
+      "description": "获取群相册列表",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [
+        "get_group_album_list"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "get_qun_album_list",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "attach_info",
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "upload_image_to_qun_album",
+      "category": "group_album",
+      "description": "上传图片到群相册",
+      "params": {
+        "group_id": "int",
+        "file": "str",
+        "album_id": "str",
+        "album_name": "str"
+      },
+      "aliases": [
+        "upload_group_album"
+      ],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "upload_image_to_qun_album",
+      "arguments": [
+        "group_id",
+        "file",
+        "album_id",
+        "album_name"
+      ],
+      "required": [
+        "group_id",
+        "file",
+        "album_id",
+        "album_name"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "album_name",
+          "file",
+          "group_id"
+        ],
+        "required": [
+          "album_id",
+          "album_name",
+          "file",
+          "group_id"
+        ]
+      },
+      "compatibility": "公共Service缺少SnowLuma必填album_name；Plus通过公开适配器命令补齐，不修改Expand响应契约"
+    },
+    {
+      "action": "get_group_album_media_list",
+      "category": "group_album",
+      "description": "获取群相册媒体列表",
+      "params": {
+        "group_id": "int",
+        "album_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "get_group_album_media_list",
+      "arguments": [
+        "group_id",
+        "album_id"
+      ],
+      "required": [
+        "group_id",
+        "album_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "attach_info",
+          "group_id"
+        ],
+        "required": [
+          "album_id",
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "do_group_album_comment",
+      "category": "group_album",
+      "description": "评论群相册",
+      "params": {
+        "group_id": "int",
+        "album_id": "str",
+        "lloc": "str",
+        "content": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "do_group_album_comment",
+      "arguments": [
+        "group_id",
+        "album_id",
+        "lloc",
+        "content"
+      ],
+      "required": [
+        "group_id",
+        "album_id",
+        "lloc",
+        "content"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "content",
+          "group_id",
+          "lloc"
+        ],
+        "required": [
+          "album_id",
+          "content",
+          "group_id",
+          "lloc"
+        ]
+      }
+    },
+    {
+      "action": "set_group_album_media_like",
+      "category": "group_album",
+      "description": "点赞群相册",
+      "params": {
+        "group_id": "int",
+        "album_id": "str",
+        "batch_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "set_group_album_media_like",
+      "arguments": [
+        "group_id",
+        "album_id",
+        "batch_id"
+      ],
+      "required": [
+        "group_id",
+        "album_id",
+        "batch_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "batch_id",
+          "group_id",
+          "lloc"
+        ],
+        "required": [
+          "album_id",
+          "batch_id",
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "cancel_group_album_media_like",
+      "category": "group_album",
+      "description": "取消点赞群相册",
+      "params": {
+        "group_id": "int",
+        "album_id": "str",
+        "batch_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "cancel_group_album_media_like",
+      "arguments": [
+        "group_id",
+        "album_id",
+        "batch_id"
+      ],
+      "required": [
+        "group_id",
+        "album_id",
+        "batch_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "batch_id",
+          "group_id",
+          "lloc"
+        ],
+        "required": [
+          "album_id",
+          "batch_id",
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "del_group_album_media",
+      "category": "group_album",
+      "description": "删除群相册媒体",
+      "params": {
+        "group_id": "int",
+        "album_id": "str",
+        "lloc": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "del_group_album_media",
+      "arguments": [
+        "group_id",
+        "album_id",
+        "lloc"
+      ],
+      "required": [
+        "group_id",
+        "album_id",
+        "lloc"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "album_id",
+          "group_id",
+          "lloc"
+        ],
+        "required": [
+          "album_id",
+          "group_id",
+          "lloc"
+        ]
+      }
+    },
+    {
+      "action": "set_group_todo",
+      "category": "group_todo",
+      "description": "设置群待办",
+      "params": {
+        "group_id": "int",
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_todo_service",
+      "method": "set_group_todo",
+      "arguments": [
+        "group_id",
+        "message_id"
+      ],
+      "required": [
+        "group_id",
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_todo_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "complete_group_todo",
+      "category": "group_todo",
+      "description": "完成群待办",
+      "params": {
+        "group_id": "int",
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_todo_service",
+      "method": "complete_group_todo",
+      "arguments": [
+        "group_id",
+        "message_id"
+      ],
+      "required": [
+        "group_id",
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_todo_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "cancel_group_todo",
+      "category": "group_todo",
+      "description": "取消群待办",
+      "params": {
+        "group_id": "int",
+        "message_id": "int | str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_todo_service",
+      "method": "cancel_group_todo",
+      "arguments": [
+        "group_id",
+        "message_id"
+      ],
+      "required": [
+        "group_id",
+        "message_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_todo_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_group_todo_list",
+      "category": "group_todo",
+      "description": "获取群待办列表（SnowLuma 扩展）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:group_todo_service",
+      "method": "get_group_todo_list",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_todo_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "group_id"
+        ],
+        "required": [
+          "group_id"
+        ]
+      }
+    },
+    {
+      "action": "get_qzone_msg_list",
+      "category": "qzone",
+      "description": "获取QQ空间说说列表",
+      "params": {
+        "pos": "int",
+        "num": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "get_qzone_msg_list",
+      "arguments": [
+        "pos",
+        "num"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "num",
+          "pos",
+          "target_uin"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "get_qzone_feeds",
+      "category": "qzone",
+      "description": "获取QQ空间好友动态",
+      "params": {
+        "page_num": "int",
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "get_qzone_feeds",
+      "arguments": [
+        "page_num",
+        "count"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "read",
+      "native_parameters": {
+        "arguments": [
+          "count",
+          "page_num"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "send_qzone_msg",
+      "category": "qzone",
+      "description": "发表说说（支持纯文字或带图，可设置查看权限）",
+      "params": {
+        "content": "str",
+        "images": "list[str]",
+        "ugc_right": "int",
+        "target_uins": "list[int]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "send_qzone_msg",
+      "arguments": [
+        "content",
+        "images",
+        "ugc_right",
+        "target_uins"
+      ],
+      "required": [
+        "content"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "content",
+          "images",
+          "target_uins",
+          "ugc_right"
+        ],
+        "required": [
+          "content"
+        ]
+      }
+    },
+    {
+      "action": "delete_qzone_msg",
+      "category": "qzone",
+      "description": "删除说说",
+      "params": {
+        "tid": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "delete_qzone_msg",
+      "arguments": [
+        "tid"
+      ],
+      "required": [
+        "tid"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "tid"
+        ],
+        "required": [
+          "tid"
+        ]
+      }
+    },
+    {
+      "action": "like_qzone",
+      "category": "qzone",
+      "description": "给说说点赞",
+      "params": {
+        "tid": "str",
+        "target_uin": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "like_qzone",
+      "arguments": [
+        "tid",
+        "target_uin"
+      ],
+      "required": [
+        "tid"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "abstime",
+          "target_uin",
+          "tid"
+        ],
+        "required": [
+          "tid"
+        ]
+      }
+    },
+    {
+      "action": "unlike_qzone",
+      "category": "qzone",
+      "description": "取消点赞",
+      "params": {
+        "tid": "str",
+        "target_uin": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "unlike_qzone",
+      "arguments": [
+        "tid",
+        "target_uin"
+      ],
+      "required": [
+        "tid"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "abstime",
+          "target_uin",
+          "tid"
+        ],
+        "required": [
+          "tid"
+        ]
+      }
+    },
+    {
+      "action": "comment_qzone",
+      "category": "qzone",
+      "description": "评论说说（支持纯文字或带图）",
+      "params": {
+        "tid": "str",
+        "content": "str",
+        "target_uin": "int",
+        "images": "list[str]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "comment_qzone",
+      "arguments": [
+        "tid",
+        "content",
+        "target_uin",
+        "images"
+      ],
+      "required": [
+        "tid",
+        "content"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "content",
+          "images",
+          "target_uin",
+          "tid"
+        ],
+        "required": [
+          "content",
+          "tid"
+        ]
+      }
+    },
+    {
+      "action": "set_qzone_ban",
+      "category": "qzone",
+      "description": "拉黑或解除拉黑某人（机器人自身 QQ 空间黑名单；SnowLuma 扩展）",
+      "params": {
+        "user_id": "int",
+        "enable": "bool"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "set_qzone_ban",
+      "arguments": [
+        "user_id",
+        "enable"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "enable",
+          "user_id"
+        ],
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    {
+      "action": "set_qzone_msg_right",
+      "category": "qzone",
+      "description": "修改一条已发说说的查看权限（SnowLuma 扩展）",
+      "params": {
+        "tid": "str",
+        "ugc_right": "int",
+        "target_uins": "list[int]"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:qzone_service",
+      "method": "set_qzone_msg_right",
+      "arguments": [
+        "tid",
+        "ugc_right",
+        "target_uins"
+      ],
+      "required": [
+        "tid",
+        "ugc_right"
+      ],
+      "file": "plugins/onebot_expand/services/qzone_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "target_uins",
+          "tid",
+          "ugc_right"
+        ],
+        "required": [
+          "tid",
+          "ugc_right"
+        ]
+      }
+    },
+    {
+      "action": "share_peer",
+      "category": "ark",
+      "description": "分享用户/群Ark卡片（SnowLuma 主名，send_ark_share 是 NapCat 标准化别名）",
+      "params": {
+        "user_id": "int",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ark_service",
+      "method": "share_peer",
+      "arguments": [
+        "user_id",
+        "group_id"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/ark_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "phone_number",
+          "user_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "send_ark_share",
+      "category": "ark",
+      "description": "分享Ark卡片（NapCat 名，功能等价于 share_peer）",
+      "params": {
+        "user_id": "int",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ark_service",
+      "method": "send_ark_share",
+      "arguments": [
+        "user_id",
+        "group_id"
+      ],
+      "required": [],
+      "file": "plugins/onebot_expand/services/ark_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "group_id",
+          "phone_number",
+          "user_id"
+        ],
+        "required": []
+      }
+    },
+    {
+      "action": "share_group_ex",
+      "category": "ark",
+      "description": "分享群Ark卡片（SnowLuma 主名，send_group_ark_share 是 NapCat 标准化别名）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ark_service",
+      "method": "share_group_ex",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/ark_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "send_group_ark_share",
+      "category": "ark",
+      "description": "发送群Ark分享（NapCat 名，功能等价于 share_group_ex）",
+      "params": {
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ark_service",
+      "method": "send_group_ark_share",
+      "arguments": [
+        "group_id"
+      ],
+      "required": [
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/ark_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "send_tuwen_ark",
+      "category": "ark",
+      "description": "发送图文Ark卡片（SnowLuma 扩展，私聊/群聊二选一，返回 null 不可撤回）",
+      "params": {
+        "user_id": "int",
+        "group_id": "int",
+        "title": "str",
+        "desc": "str",
+        "summary": "str",
+        "preview_url": "str",
+        "jump_url": "str"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:ark_service",
+      "method": "send_tuwen_ark",
+      "arguments": [
+        "title",
+        "desc",
+        "jump_url",
+        "user_id",
+        "group_id",
+        "summary",
+        "preview_url"
+      ],
+      "required": [
+        "title",
+        "desc",
+        "jump_url"
+      ],
+      "file": "plugins/onebot_expand/services/ark_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [
+          "desc",
+          "group_id",
+          "jump_url",
+          "preview_url",
+          "summary",
+          "title",
+          "user_id"
+        ],
+        "required": [
+          "desc",
+          "jump_url",
+          "title"
+        ]
+      }
+    },
+    {
+      "action": "batch_delete_group_member",
+      "category": "group_ext",
+      "description": "批量踢出群成员（LLOneBot 扩展）",
+      "params": {
+        "group_id": "int",
+        "user_ids": "list[int]"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "BatchDeleteGroupMember",
+      "arguments": [
+        "group_id",
+        "user_ids"
+      ],
+      "required": [
+        "group_id",
+        "user_ids"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "set_group_msg_mask",
+      "category": "group_ext",
+      "description": "设置群消息屏蔽（LLOneBot 扩展）",
+      "params": {
+        "group_id": "int",
+        "mask": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_ext_service",
+      "method": "SetGroupMsgMask",
+      "arguments": [
+        "group_id",
+        "mask"
+      ],
+      "required": [
+        "group_id",
+        "mask"
+      ],
+      "file": "plugins/onebot_expand/services/group_ext_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "create_group_album",
+      "category": "group_album",
+      "description": "创建群相册（LLOneBot 扩展）",
+      "params": {
+        "group_id": "int",
+        "name": "str",
+        "desc": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "CreateGroupAlbum",
+      "arguments": [
+        "group_id",
+        "name",
+        "desc"
+      ],
+      "required": [
+        "group_id",
+        "name",
+        "desc"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "delete_group_album",
+      "category": "group_album",
+      "description": "删除群相册（LLOneBot 扩展）",
+      "params": {
+        "group_id": "int",
+        "album_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_album_service",
+      "method": "DeleteGroupAlbum",
+      "arguments": [
+        "group_id",
+        "album_id"
+      ],
+      "required": [
+        "group_id",
+        "album_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_album_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_flash_file_download_urls",
+      "category": "flash",
+      "description": "获取闪传文件集所有文件的下载URL（LLOneBot 扩展）",
+      "params": {
+        "fileset_id": "str",
+        "share_link": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:flash_service",
+      "method": "GetFlashFileDownloadUrls",
+      "arguments": [
+        "fileset_id",
+        "share_link"
+      ],
+      "required": [
+        "fileset_id",
+        "share_link"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "upload_flash_file",
+      "category": "flash",
+      "description": "上传闪传文件（LLOneBot 扩展）",
+      "params": {
+        "title": "str",
+        "paths": "list[str]"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:flash_service",
+      "method": "UploadFlashFile",
+      "arguments": [
+        "title",
+        "paths"
+      ],
+      "required": [
+        "title",
+        "paths"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "reshare_flash_file",
+      "category": "flash",
+      "description": "重新分享闪传文件，获取新的分享链接（LLOneBot 扩展）",
+      "params": {
+        "fileset_id": "str",
+        "share_link": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:flash_service",
+      "method": "ReshareFlashFile",
+      "arguments": [
+        "fileset_id",
+        "share_link"
+      ],
+      "required": [
+        "fileset_id",
+        "share_link"
+      ],
+      "file": "plugins/onebot_expand/services/flash_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "set_group_file_forever",
+      "category": "group_file",
+      "description": "设置群文件永久保存（LLOneBot 扩展）",
+      "params": {
+        "group_id": "int",
+        "file_id": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:group_file_service",
+      "method": "SetGroupFileForever",
+      "arguments": [
+        "group_id",
+        "file_id"
+      ],
+      "required": [
+        "group_id",
+        "file_id"
+      ],
+      "file": "plugins/onebot_expand/services/group_file_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_profile_like_me",
+      "category": "user_ext",
+      "description": "获取自身被点赞列表（LLOneBot 扩展）",
+      "params": {
+        "start": "int",
+        "count": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "GetProfileLikeMe",
+      "arguments": [
+        "start",
+        "count"
+      ],
+      "required": [
+        "start",
+        "count"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "get_profile_like_count",
+      "category": "user_ext",
+      "description": "获取用户点赞总数（LLOneBot 扩展）",
+      "params": {
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "GetProfileLikeCount",
+      "arguments": [
+        "user_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "get_qq_avatar",
+      "category": "user_ext",
+      "description": "获取QQ头像URL（LLOneBot 扩展）",
+      "params": {
+        "user_id": "int",
+        "group_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "GetQQAvatar",
+      "arguments": [
+        "user_id",
+        "group_id"
+      ],
+      "required": [
+        "user_id",
+        "group_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "set_friend_category",
+      "category": "user_ext",
+      "description": "设置好友分类（LLOneBot 扩展）",
+      "params": {
+        "user_id": "int",
+        "category_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "SetFriendCategory",
+      "arguments": [
+        "user_id",
+        "category_id"
+      ],
+      "required": [
+        "user_id",
+        "category_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "_get_friend_dress",
+      "category": "user_ext",
+      "description": "获取指定 QQ 号正在使用的个性装扮（挂件/名片/来电/输入状态等，SnowLuma 扩展）",
+      "params": {
+        "user_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": true,
+      "source_declared": true,
+      "service": "onebot_expand:service:user_ext_service",
+      "method": "get_friend_dress",
+      "arguments": [
+        "user_id"
+      ],
+      "required": [
+        "user_id"
+      ],
+      "file": "plugins/onebot_expand/services/user_ext_service.py",
+      "stream": false,
+      "risk": "write",
+      "native_parameters": {
+        "arguments": [],
+        "required": []
+      }
+    },
+    {
+      "action": "get_recommend_face",
+      "category": "emoji_ext",
+      "description": "获取推荐表情（LLOneBot 扩展）",
+      "params": {
+        "word": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "GetRecommendFace",
+      "arguments": [
+        "word"
+      ],
+      "required": [
+        "word"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "unset_msg_emoji_like",
+      "category": "emoji_ext",
+      "description": "取消消息表情回应（LLOneBot 扩展）",
+      "params": {
+        "message_id": "int | str",
+        "emoji_id": "int"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:emoji_ext_service",
+      "method": "UnSetMsgEmojiLike",
+      "arguments": [
+        "message_id",
+        "emoji_id"
+      ],
+      "required": [
+        "message_id",
+        "emoji_id"
+      ],
+      "file": "plugins/onebot_expand/services/emoji_ext_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_config",
+      "category": "misc",
+      "description": "获取协议端配置（LLOneBot 扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "GetConfig",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "set_config",
+      "category": "misc",
+      "description": "设置协议端配置（LLOneBot 扩展）",
+      "params": {
+        "config": "dict"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "SetConfig",
+      "arguments": [
+        "config"
+      ],
+      "required": [
+        "config"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_event",
+      "category": "misc",
+      "description": "获取事件（LLOneBot 扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "GetEvent",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "llonebot_debug",
+      "category": "misc",
+      "description": "调试接口，调用内部API（LLOneBot 扩展）",
+      "params": {
+        "api_class": "str",
+        "method": "str",
+        "args": "list"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "LlonebotDebug",
+      "arguments": [
+        "api_class",
+        "method",
+        "args"
+      ],
+      "required": [
+        "api_class",
+        "method",
+        "args"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "scan_qrcode",
+      "category": "misc",
+      "description": "扫码登录（LLOneBot 扩展）",
+      "params": {
+        "qrcode": "str"
+      },
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "ScanQRCode",
+      "arguments": [
+        "qrcode"
+      ],
+      "required": [
+        "qrcode"
+      ],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "write"
+    },
+    {
+      "action": "get_guild_list",
+      "category": "misc",
+      "description": "获取频道列表（NapCat/LLOneBot 扩展）",
+      "params": {},
+      "aliases": [],
+      "expand_compatible": false,
+      "source_declared": false,
+      "service": "onebot_expand:service:misc_service",
+      "method": "GetGuildList",
+      "arguments": [],
+      "required": [],
+      "file": "plugins/onebot_expand/services/misc_service.py",
+      "stream": false,
+      "risk": "read"
+    },
+    {
+      "action": "test_download_stream",
+      "category": "流式接口",
+      "description": "测试下载流(推送 10 个数据帧,验证流式传输,不触达 QQ)",
+      "params": {
+        "error": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": true,
+      "expand_compatible": false,
+      "backend_compatible": true,
+      "arguments": [
+        "error"
+      ],
+      "required": [],
+      "stream": true,
+      "risk": "stream_unavailable",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    },
+    {
+      "action": "send_custom_face",
+      "category": "消息",
+      "description": "发送账号收藏表情（emoji_id 或 MD5），保留表情显示样式",
+      "params": {
+        "emoji_id": "参照协议文档",
+        "group_id": "参照协议文档",
+        "user_id": "参照协议文档",
+        "reply_to": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": false,
+      "expand_compatible": false,
+      "backend_compatible": false,
+      "arguments": [
+        "emoji_id",
+        "group_id",
+        "user_id",
+        "reply_to"
+      ],
+      "required": [
+        "emoji_id"
+      ],
+      "stream": false,
+      "risk": "write",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    },
+    {
+      "action": "upload_video_to_qun_album",
+      "category": "群相册",
+      "description": "上传视频到群相册",
+      "params": {
+        "group_id": "参照协议文档",
+        "album_id": "参照协议文档",
+        "album_name": "参照协议文档",
+        "file": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": false,
+      "expand_compatible": false,
+      "backend_compatible": false,
+      "arguments": [
+        "group_id",
+        "album_id",
+        "album_name",
+        "file"
+      ],
+      "required": [
+        "group_id",
+        "album_id",
+        "album_name",
+        "file"
+      ],
+      "stream": false,
+      "risk": "write",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    },
+    {
+      "action": "add_group_tag",
+      "category": "群管理",
+      "description": "向某个群分类添加资料标签",
+      "params": {
+        "group_class": "参照协议文档",
+        "name": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": false,
+      "expand_compatible": false,
+      "backend_compatible": false,
+      "arguments": [
+        "group_class",
+        "name"
+      ],
+      "required": [
+        "group_class",
+        "name"
+      ],
+      "stream": false,
+      "risk": "write",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    },
+    {
+      "action": "delete_group_tag",
+      "category": "群管理",
+      "description": "从某个群分类移除资料标签",
+      "params": {
+        "group_class": "参照协议文档",
+        "name": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": false,
+      "expand_compatible": false,
+      "backend_compatible": false,
+      "arguments": [
+        "group_class",
+        "name"
+      ],
+      "required": [
+        "group_class",
+        "name"
+      ],
+      "stream": false,
+      "risk": "write",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    },
+    {
+      "action": "get_group_tags",
+      "category": "群管理",
+      "description": "读取某个群分类下的资料标签",
+      "params": {
+        "group_class": "参照协议文档"
+      },
+      "aliases": [],
+      "source_declared": false,
+      "expand_compatible": false,
+      "backend_compatible": false,
+      "arguments": [
+        "group_class"
+      ],
+      "required": [
+        "group_class"
+      ],
+      "stream": false,
+      "risk": "read",
+      "compatibility": "参考目录版本1.14.22；当前本地源码1.14.14必须另行确认注册。Expand无Service时才使用公开适配器命令。",
+      "reference": "snowluma_full/assets/sl_catalog.json"
+    }
+  ]
+}

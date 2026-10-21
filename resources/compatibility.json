@@ -1,0 +1,11 @@
+{
+  "adapter_version": "2.0.0",
+  "core_version": "1.3.0-alpha.1",
+  "functions": {
+    "adapter_receive": "0d74e359291f8cfc660fa49b69ba310df0bf7bda4dd7e76f0dbe39e087a99685",
+    "adapter_send": "46de79dd4b02df1f270f1a0c987e5e5338b8ec92b2ea67da97f347636b5b2d1e",
+    "action_factory": "0249d2a8bf81386e5bd25eeb17ab19106094aa990a7532abfb17ee9c4ad1cd2c",
+    "action_manager": "2e9fb84db608cdd6d08fad88b30eff4f8ba86d7ec6647995aeb1e3bc91228e0a"
+  },
+  "adapter_component_version": "0.0.1"
+}

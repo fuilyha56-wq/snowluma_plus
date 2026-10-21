@@ -1,0 +1,46 @@
+{
+  ".gitignore": {
+    "matches_baseline": true,
+    "sha256": "378afcd9427fb5eed4839e4b8043248dfb10a6cda61bcc10b533df3c1747c3e7"
+  },
+  "plugins/onebot_adapter/plugin.py": {
+    "matches_baseline": true,
+    "sha256": "284f939d3910286e20b1eb338658bad5d7f67352ee6bedc46bbfcdab2c98fbe0"
+  },
+  "plugins/onebot_adapter/src/handlers/to_core/message_handler.py": {
+    "matches_baseline": true,
+    "sha256": "5c2c7626fa2f53021e24bac59ea57831559d7dc46b64d70a4f7755887c8f5f3a"
+  },
+  "plugins/onebot_adapter/src/handlers/to_napcat/send_handler.py": {
+    "matches_baseline": true,
+    "sha256": "63df3e8f0b9925340daa59ef66e1977e2f3658832fd4afdc6ad2096dd2a94b60"
+  },
+  "src/core/components/base/action.py": {
+    "matches_baseline": true,
+    "sha256": "d66b99fbdaacebdac13adfe1d9764de101b2ed8aafd793ca58e6315eb86d97f5"
+  },
+  "src/core/components/base/chatter.py": {
+    "matches_baseline": true,
+    "sha256": "1f814e5f13b166f5bce08057275507946815d90d9928b392a7fc0705d69a517c"
+  },
+  "src/core/managers/action_manager.py": {
+    "matches_baseline": true,
+    "sha256": "41ba58fde314d8f7cc866dcadc138c507a452caaf7b27c845d296ff1df669b50"
+  },
+  "src/core/transport/message_receive/receiver.py": {
+    "matches_baseline": true,
+    "sha256": "aab2c71fb6bf8d16d80fce869c3a09c1dc1b7f1e6d4e0cedb70c8ae9a6301d4a"
+  },
+  "src/core/transport/message_receive/utils.py": {
+    "matches_baseline": true,
+    "sha256": "9e42aa8fa7206ea827a08a50ba3d01177a135599b510fd1e138d51a5840fc6fc"
+  },
+  "src/core/utils/llm_tool_call.py": {
+    "matches_baseline": true,
+    "sha256": "fb3011b1d903930622dae97fa3cc2a833d376041d6c9ad7f3931d2b8bae7b3bd"
+  },
+  "plugins/neo_fatum_chatter/context/sources/history_source.py": {
+    "matches_baseline": true,
+    "sha256": "c382b37735f2d1b87c60338ede0df57dfbce2b2eb24e0c3ef141dfe04fe30d5c"
+  }
+}

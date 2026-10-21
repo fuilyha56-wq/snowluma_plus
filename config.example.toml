@@ -1,0 +1,205 @@
+# 启用与适配器选择。
+[plugin]
+# 启用插件
+# 值类型：bool, 默认值：true
+enabled = true
+
+# 接管允许接收的 notice/request；关闭后恢复旧链路
+# 值类型：bool, 默认值：true
+capture = true
+
+# 适配器签名白名单
+# 值类型：list, 默认值：["onebot_adapter:adapter:onebot_adapter"]
+adapters = ["onebot_adapter:adapter:onebot_adapter"]
+
+# 后端能力资料名；本地源码能力不代表运行实例能力
+# 值类型：str, 默认值："snowluma"
+backend = "snowluma"
+
+# 按账号/适配器隔离聊天流；首次启用建立新流，保留原流历史不自动迁移
+# 值类型：bool, 默认值：true
+isolate_streams = true
+
+# 账本和事件呈现。
+[events]
+# 仅记录不投递的类型，例如 notify.input_status
+# 值类型：list, 默认值：[]
+disabled_types = []
+
+# 允许进入会话上下文的类型；默认不主动唤醒 LLM
+# 值类型：list, 默认值：["group_msg_emoji_like", "notify.poke", "group_increase", "group_decrease", "group_admin", "group_card", "notify.title", "notify.group_name", "essence", "group_ban", "group_recall", "friend_recall", "group_upload", "friend_add", "group_notice"]
+context_types = ["group_msg_emoji_like", "notify.poke", "group_increase", "group_decrease", "group_admin", "group_card", "notify.title", "notify.group_name", "essence", "group_ban", "group_recall", "friend_recall", "group_upload", "friend_add", "group_notice"]
+
+# 明确允许唤醒 Chatter 的类型；建议仅在测试群配置
+# 值类型：list, 默认值：[]
+wake_types = []
+
+# 有界唤醒队列；满时从持久账本恢复
+# 值类型：int, 默认值：128
+queue_size = 128
+
+# 已完成事件、审批、审计保留天数
+# 值类型：int, 默认值：14
+retention_days = 14
+
+# 单事件大小限制；超限保留失败指标，不冒充接管成功
+# 值类型：int, 默认值：262144
+max_event_bytes = 262144
+
+# 账本软限额；达到后告警并拒绝接管，不静默挤掉审批
+# 值类型：int, 默认值：256
+max_database_mb = 256
+
+# 单事件上下文字符预算
+# 值类型：int, 默认值：1800
+text_budget = 1800
+
+# 失败投递重试上限；超限留账供诊断重放
+# 值类型：int, 默认值：3
+delivery_retries = 3
+
+# 等待核心实际入流/持久化确认的超时；超时留账重放
+# 值类型：float, 默认值：10
+delivery_timeout_seconds = 10
+
+# 触发者授权与平台权限分开检查。
+[access]
+# 可跨会话查询和执行授权动作的 QQ 号；空为无操作者
+# 值类型：list, 默认值：[]
+operators = []
+
+# 审批提醒私聊接收者；同时受适配器私聊名单限制
+# 值类型：list, 默认值：[]
+management_users = []
+
+# 允许管理/公告/互动动作的群白名单
+# 值类型：list, 默认值：[]
+write_groups = []
+
+# 允许执行的协议 action 精确白名单；默认不向 LLM 开放写入
+# 值类型：list, 默认值：[]
+allowed_actions = []
+
+# 仅提醒：remind；人工辅助审批：assisted；按白名单与理由规则自动审批：auto
+# 值类型：str, 默认值："remind"
+approval_mode = "remind"
+
+# 可接收及处理群申请的额外范围；仍受适配器群名单限制
+# 值类型：list, 默认值：[]
+approval_groups = []
+
+# 自动同意理由的完整正则；auto 模式必须同时配置申请者白名单
+# 值类型：str, 默认值：""
+auto_reason_pattern = ""
+
+# 自动同意申请者 QQ 白名单；不以等级作为唯一判断
+# 值类型：list, 默认值：[]
+auto_applicants = []
+
+# 本地待办过期时间，不表示平台 flag 一定有效
+# 值类型：int, 默认值：72
+requests_ttl_hours = 72
+
+# 工具输出字符上限；原响应保存在内部审计
+# 值类型：int, 默认值：6000
+result_chars = 6000
+
+# 每会话每分钟工具协议调用上限
+# 值类型：int, 默认值：30
+calls_per_minute = 30
+
+# 文件外发边界；默认只允许平台文件 ID 的读取查询。
+[files]
+# 允许本地文件外发；必须确认与协议端同一文件系统
+# 值类型：bool, 默认值：false
+allow_local_upload = false
+
+# 操作者确认 Neo-MoFox 与协议端路径解析在同一主机
+# 值类型：bool, 默认值：false
+same_host = false
+
+# 本地允许根目录的绝对路径
+# 值类型：list, 默认值：[]
+roots = []
+
+# 允许扩展名
+# 值类型：list, 默认值：[".txt", ".pdf", ".png", ".jpg"]
+extensions = [".txt", ".pdf", ".png", ".jpg"]
+
+# 外发文件最大 MiB
+# 值类型：int, 默认值：10
+max_mb = 10
+
+# 网络媒体来源主机精确白名单；空禁用 URL 外发，不自动下载
+# 值类型：list, 默认值：[]
+url_hosts = []
+
+# 成员索引、可见消息统计和提示预算。
+[members]
+# 内存路由缓存条目上限；淘汰不删除持久资料
+# 值类型：int, 默认值：256
+max_scopes = 256
+
+# 维护允许群成员消息的滚动 24 小时统计
+# 值类型：bool, 默认值：true
+enabled = true
+
+# 资料缓存 TTL；失败保留过期资料
+# 值类型：int, 默认值：900
+ttl_seconds = 900
+
+# 提醒中最多列出的活跃成员
+# 值类型：int, 默认值：5
+reminder_members = 5
+
+# 身份和荣誉提醒总字符预算
+# 值类型：int, 默认值：1200
+reminder_chars = 1200
+
+# 公开框架消息 API 历史回填上限；达到上限显示不完整
+# 值类型：int, 默认值：1000
+backfill_limit = 1000
+
+# 公告快照；首次同步只建立基线。
+[announcements]
+# 轮询群白名单，空不自动查询
+# 值类型：list, 默认值：[]
+groups = []
+
+# 公告轮询间隔
+# 值类型：int, 默认值：1800
+interval_seconds = 1800
+
+# 当前协议无原生分页；超出此快照预算标记不完整，不生成删除差异
+# 值类型：int, 默认值：500
+max_items = 500
+
+# 手动、定时、启动补打共用持久状态。
+[checkin]
+# 启用定时群打卡；手动也需动作授权
+# 值类型：bool, 默认值：false
+enabled = false
+
+# 打卡群白名单
+# 值类型：list, 默认值：[]
+groups = []
+
+# 本地时区的 HH:MM，严格校验
+# 值类型：str, 默认值："08:30"
+at = "08:30"
+
+# IANA 时区
+# 值类型：str, 默认值："Asia/Shanghai"
+timezone = "Asia/Shanghai"
+
+# 启动补打窗口
+# 值类型：int, 默认值：120
+catchup_minutes = 120
+
+# 每群每天固定抖动上限
+# 值类型：int, 默认值：30
+jitter_seconds = 30
+
+# 明确失败有限重试；结果不确定不重试
+# 值类型：int, 默认值：2
+retries = 2
