@@ -75,6 +75,11 @@ class SnowLumaConfig(BaseConfig):
             default_factory=list,
             description="明确允许唤醒 Chatter 的类型；建议仅在测试群配置",
         )
+        wake_bot_pokes: bool = Field(
+            label="Bot 被戳时唤醒模型",
+            default=True,
+            description="目标为当前 Bot、且通过适配器和插件名单的戳一戳会唤醒主模型；其他戳戳是否进入上下文由 context_types 控制。",
+        )
         queue_size: int = Field(
             label="事件唤醒队列容量",
             default=128,

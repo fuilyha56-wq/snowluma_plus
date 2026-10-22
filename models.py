@@ -204,6 +204,8 @@ def describe(event: UnifiedEvent, budget: int = 1800) -> str:
         return json_text(value).replace("<", "\\u003c").replace(">", "\\u003e")
 
     label = LABELS.get(event.type_key, "未知平台事件类型=" + display(event.type_key))
+    if event.type_key == "notify.poke" and event.target == event.scope.account:
+        label = "戳一戳（Bot 被戳）"
     heading = f"[SnowLuma Plus 结构化事件，来源={event.source}，id={event.event_id}] {label}；操作者QQ={display(event.actor) if event.actor else '未提供'}；目标QQ={display(event.target) if event.target else '未提供'}。"
     if event.message_id:
         heading += f"平台消息ID={display(event.message_id)}；原消息内容暂不可查询（未编造原文）。"

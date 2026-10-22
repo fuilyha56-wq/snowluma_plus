@@ -61,6 +61,7 @@ class SnowLumaEvents(BaseEventHandler):
         EventType.ON_MESSAGE_SENT,
         EventType.AFTER_MESSAGE_SENT,
         "on_prompt_build",
+        "neo_default_chatter:preprocess",
         "neo_default_chatter:build_history_text",
         "snowluma_plus:consumer_probe",
     ]
@@ -226,9 +227,10 @@ class SnowLumaEvents(BaseEventHandler):
             if event:
                 event_id = event["event_id"]
                 message.message_type = MessageType.NOTICE
+                wake_requested = bool(extra.get("snowluma_wake_requested"))
                 message.sender_id, message.sender_name, message.sender_cardname = (
                     "",
-                    "",
+                    "平台事件" if wake_requested else "",
                     None,
                 )
                 message.raw_data = event
@@ -248,10 +250,15 @@ class SnowLumaEvents(BaseEventHandler):
                         user_id=scope.user,
                     )
                 )
-                # 历史保存真实系统标记；资料由支持的 prompt 贡献入口呈现。
-                # NFC 会跳过空正文，从而不把平台事件渲染成某人“说”。
-                message.content = ""
-                message.processed_plain_text = ""
+                # 通知不是用户发言。静默事件保持空正文；明确唤醒的事件携带
+                # 结构化描述作为本轮触发内容，供主模型读取并判断如何回应。
+                if wake_requested:
+                    prompt_text = str(extra.get("snowluma_text") or "")
+                    message.content = prompt_text
+                    message.processed_plain_text = prompt_text
+                else:
+                    message.content = ""
+                    message.processed_plain_text = ""
                 runtime.remember_scope(message.stream_id, scope)
                 if extra.get("snowluma_state_only"):
                     await runtime.ledger.write(
@@ -267,11 +274,8 @@ class SnowLumaEvents(BaseEventHandler):
                     chat_type=message.chat_type,
                 )
                 stream.bot_id = scope.account
-                event_type = event["kind"] + (
-                    "." + event["subtype"] if event["kind"] == "notify" else ""
-                )
                 self_echo = event["actor"] == scope.account
-                if event_type not in runtime.config.events.wake_types or self_echo:
+                if not wake_requested or self_echo:
                     if not any(
                         item.message_id == message.message_id
                         for item in stream.context.history_messages
@@ -316,6 +320,30 @@ class SnowLumaEvents(BaseEventHandler):
                             time.time(),
                         ),
                     )
+            return EventDecision.PASS, params
+        if name == "neo_default_chatter:preprocess":
+            for message in params.get("unreads") or []:
+                extra = getattr(message, "extra", {}) or {}
+                event = extra.get("snowluma_plus")
+                if not extra.get("snowluma_wake_requested") or not isinstance(
+                    event, dict
+                ):
+                    continue
+                params["proceed"] = True
+                params["reason"] = "SnowLuma 平台事件已明确唤醒主模型"
+                runtime.counters["wake_preprocess_bypassed"] += 1
+                from src.app.plugin_system.api.log_api import get_logger
+
+                event_type = str(event.get("kind") or "platform_event")
+                if event.get("subtype"):
+                    event_type += "." + str(event["subtype"])
+                scope_data = event.get("scope") or {}
+                get_logger("snowluma_plus").info(
+                    "平台事件已放行到 Chatter 主模型回合："
+                    f"type={event_type}, group={scope_data.get('group') or '-'}；"
+                    "普通回复过滤已跳过"
+                )
+                return EventDecision.STOP, params
             return EventDecision.PASS, params
         if name in {"on_prompt_build", "neo_default_chatter:build_history_text"}:
             if name == "neo_default_chatter:build_history_text":

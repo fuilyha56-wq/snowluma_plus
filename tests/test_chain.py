@@ -11,8 +11,11 @@ import pytest
 
 from src.app.plugin_system.api import stream_api
 from src.core.prompt import PromptTemplate
+from src.core.components.types import EventType
+from src.core.models.message import Message, MessageType
+from src.kernel.event import EventDecision
 
-from ..models import Scope
+from ..models import Scope, normalize
 from .conftest import ACCOUNT, ADAPTER, GROUP, OPERATOR, USER, drain, raw_notice
 
 
@@ -77,6 +80,78 @@ async def test_raw_to_chatter_without_original_message(env, monkeypatch, kind, s
     assert (await env.runtime.ledger.rows("SELECT consumed FROM events"))[0][
         "consumed"
     ] == 1
+
+
+async def test_poke_to_bot_wakes_main_model_with_notice_payload(env, monkeypatch):
+    """目标为Bot的戳戳成为模型触发事件，并绕过普通闲聊过滤。"""
+    raw = raw_notice(
+        "notify", sub_type="poke", target_id=ACCOUNT, message_id="poke-777"
+    )
+    event = normalize(raw, ADAPTER, ACCOUNT)
+    assert env.config.events.wake_types == []
+    assert env.runtime.wake_requested(event)
+
+    forwarded = []
+
+    async def capture_core(delivered, adapter):
+        forwarded.append(env.runtime.envelope(delivered))
+
+    monkeypatch.setattr(env.runtime, "send_to_core", capture_core)
+    assert (await env.runtime.capture(ADAPTER, raw))["status"] == "handled"
+    rows = await env.runtime.ledger.pending()
+    assert len(rows) == 1
+    await env.runtime.deliver(rows[0])
+    assert len(forwarded) == 1
+
+    envelope = forwarded[0]
+    info = envelope["message_info"]
+    extra = info["extra"]
+    assert info["message_type"] == "notice"
+    assert extra["snowluma_wake_requested"] is True
+    assert extra["snowluma_state_only"] is False
+
+    message = Message(
+        message_id=info["message_id"],
+        time=info["time"],
+        content=extra["snowluma_text"],
+        processed_plain_text=extra["snowluma_text"],
+        message_type=MessageType.UNKNOWN,
+        sender_id=info["user_info"]["user_id"],
+        sender_name=info["user_info"]["user_nickname"],
+        platform=info["platform"],
+        chat_type="group",
+        stream_id=Scope(ACCOUNT, ADAPTER, GROUP, USER).stream_id,
+        raw_data=envelope["raw_message"],
+        **extra,
+    )
+    decision, _ = await env.handler.execute(
+        EventType.ON_MESSAGE_RECEIVED.value,
+        {"message": message, "adapter_signature": ADAPTER},
+    )
+    assert decision == EventDecision.SUCCESS
+    assert message.message_type == MessageType.NOTICE
+    assert message.sender_id == "" and message.sender_name == "平台事件"
+    assert "戳一戳" in message.processed_plain_text
+    assert USER in message.processed_plain_text
+    assert ACCOUNT in message.processed_plain_text
+
+    decision, params = await env.handler.execute(
+        "neo_default_chatter:preprocess", {"unreads": [message]}
+    )
+    assert decision == EventDecision.STOP
+    assert params["proceed"] is True
+    assert env.runtime.counters["wake_preprocess_bypassed"] == 1
+
+    other_target = normalize(
+        {**raw, "target_id": "777"}, ADAPTER, ACCOUNT
+    )
+    self_poke = normalize(
+        {**raw, "user_id": ACCOUNT}, ADAPTER, ACCOUNT
+    )
+    assert not env.runtime.wake_requested(other_target)
+    assert not env.runtime.wake_requested(self_poke)
+    env.config.events.wake_bot_pokes = False
+    assert not env.runtime.wake_requested(event)
 
 
 async def test_raw_request_persistent_before_conversion_and_duplicate(env):

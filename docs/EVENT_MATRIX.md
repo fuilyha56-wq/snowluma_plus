@@ -2,7 +2,7 @@
 
 所有notice/request接入点均为 `OneBotAdapter.from_platform_message`：echo先处理，当前名单/禁用用户/互动开关过滤后，插件内经指纹校验的兼容回调先落WAL账本，再由worker处理。使用统一事件v1：event_id、source、scope(platform/account/adapter/group/user)、kind/subtype、actor/target、platform message_id、occurred_at/received_at、data、enrichment、raw_ref。
 
-默认每个允许事件都持久化，并发布 `snowluma_plus:event`（配置disabled_types时仅保留账本，不发布）。context类型通过真实CoreSink→receiver→ON_RECEIVED_OTHER_MESSAGE.processed→ON_MESSAGE_RECEIVED→stream历史；默认wake_types为空。`framework`是实际入流/入库证据，`consumed`是事件ID进入Chatter实际构建上下文的证据，均不是远端LLM已经作答证明。
+默认每个允许事件都持久化，并发布 `snowluma_plus:event`（配置disabled_types时仅保留账本，不发布）。context类型通过真实CoreSink→receiver→ON_RECEIVED_OTHER_MESSAGE.processed→ON_MESSAGE_RECEIVED→stream；`wake_types`默认空，但目标为当前Bot的外部戳一戳由`wake_bot_pokes=true`默认加入未读并唤醒主模型、绕过普通回复过滤。`framework`是实际入流/入库证据，`consumed`是事件ID进入Chatter实际构建上下文的证据，均不是远端LLM已经作答证明。
 
 |上游原始类型/子类型|用途/默认上下文|来源|主要验证|
 |---|---|---|---|
@@ -13,7 +13,7 @@
 |notify.title / notify.group_name|结构事件、历史；头衔更新使资料失效|platform|同上、两类Chatter真实构建|
 |group_ban ban/lift_ban（user_id=0为全员）|结构事件、历史；raw_event供Expand现有禁言保护|platform|test_delivery_and_context真实禁言/解禁链路|
 |group_whole_ban / group_whole_ban_status|结构事件/账本；保留enable给Expand状态保护，默认不制造聊天噪声|兼容扩展platform；本地转换未见独立原生类型|原Expand状态回归|
-|notify.poke|结构事件、历史；遵守原enable_poke及目标限制，不自动回戳|platform|回声/开关/无网络回调测试|
+|notify.poke|戳到当前Bot时默认唤醒主模型；其他戳戳仅作结构事件/历史；遵守原enable_poke及目标限制，不自动回戳|platform|定向唤醒/非目标/自回声/禁用开关测试|
 |group_msg_emoji_like add/remove|结构事件、历史；不需要查原文；likes/emoji_id/count保真|platform|日志原消息缺失回归和取消回应|
 |group_recall / friend_recall|结构事件、历史；平台ID与原文可访问性分开|platform|参数化链路/消息ID权限测试|
 |essence add/delete|结构事件、历史|platform|参数化链路/精华工具|

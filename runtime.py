@@ -334,6 +334,7 @@ class Runtime:
         if event.type_key in self.config.events.disabled_types:
             await self.ledger.finish(event.event_id, "ignored", "configured_disabled")
             return
+        wake_requested = self.wake_requested(event)
         await event_api.publish_event("snowluma_plus:event", {"event": event.public()})
         if raw.get("post_type") == "request":
             await self.request_notifications(event, adapter)
@@ -344,7 +345,7 @@ class Runtime:
                 "group_whole_ban_status",
             } or (
                 event.type_key in self.config.events.context_types
-                or event.type_key in self.config.events.wake_types
+                or wake_requested
             ):
                 await self.send_to_core(event, adapter)
             else:
@@ -352,6 +353,19 @@ class Runtime:
         else:
             self.counters["account_event"] += 1
         await self.ledger.finish(event.event_id, "delivered")
+
+    def wake_requested(self, event: UnifiedEvent) -> bool:
+        """只放行明确配置的事件，或外部成员戳当前 Bot 的通知。"""
+        if event.actor and event.actor == event.scope.account:
+            return False
+        if event.type_key in self.config.events.wake_types:
+            return True
+        return bool(
+            self.config.events.wake_bot_pokes
+            and event.type_key == "notify.poke"
+            and event.actor.isdecimal()
+            and event.target == event.scope.account
+        )
 
     async def request_notifications(self, event: UnifiedEvent, adapter: Any) -> None:
         """只投递配置的管理私聊；不将申请者当作管理员，也不自动发送 QQ 消息。"""
@@ -383,6 +397,7 @@ class Runtime:
     ) -> dict[str, Any]:
         """保留 self_id/raw_event 给 Expand 禁言保护，LLM 只消费脱敏资料。"""
         text = describe(event, self.config.events.text_budget)
+        wake_requested = self.wake_requested(event)
         if event.data.get("post_type") == "request":
             text = (
                 f"[审批待办 request_id={event.event_id}；请使用待办工具核对权限和状态]\n"
@@ -401,9 +416,10 @@ class Runtime:
                 "group_id": "" if management_user else event.scope.group,
                 "snowluma_text": text,
                 "management_user": management_user,
+                "snowluma_wake_requested": wake_requested,
                 "snowluma_state_only": event.data.get("post_type") != "request"
                 and event.type_key not in self.config.events.context_types
-                and event.type_key not in self.config.events.wake_types,
+                and not wake_requested,
             },
         }
         if event.scope.group and not management_user:

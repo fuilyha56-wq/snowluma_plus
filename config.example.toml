@@ -34,6 +34,10 @@ context_types = ["group_msg_emoji_like", "notify.poke", "group_increase", "group
 # 值类型：list, 默认值：[]
 wake_types = []
 
+# 目标为当前 Bot 的戳一戳是否立即唤醒主模型；不受 wake_types 空列表影响
+# 值类型：bool, 默认值：true
+wake_bot_pokes = true
+
 # 有界唤醒队列；满时从持久账本恢复
 # 值类型：int, 默认值：128
 queue_size = 128
